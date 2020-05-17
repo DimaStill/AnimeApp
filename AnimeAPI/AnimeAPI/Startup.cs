@@ -32,6 +32,7 @@ namespace AnimeAPI
             /*services.AddScoped<AnimeService>();*/
             services.AddScoped<GenreService>();
             services.AddScoped<StudioService>();
+            services.AddScoped<UserService>();
             services.AddControllers();
         }
 
