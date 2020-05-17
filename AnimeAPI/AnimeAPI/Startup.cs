@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnimeAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,8 @@ namespace AnimeAPI
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AnimeContext>(options => options.UseSqlServer(connection));
+            /*services.AddScoped<AnimeService>();*/
+            services.AddScoped<GenreService>();
             services.AddControllers();
         }
 
