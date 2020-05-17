@@ -8,6 +8,9 @@ namespace AnimeAPI.Models.DTO
 {
     public class UserDTO: IUser
     {
+        public UserDTO()
+        { }
+
         public string Login { get; set; }
         public string Password { get; set; }
         public ICollection<Manga> FavoritesManga { get; set; } = new List<Manga>();

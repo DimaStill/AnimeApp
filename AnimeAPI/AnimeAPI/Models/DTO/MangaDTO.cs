@@ -8,6 +8,9 @@ namespace AnimeAPI.Models.DTO
 {
     public class MangaDTO: IManga
     {
+        public MangaDTO()
+        { }
+
         public string Name { get; set; }
         public DateTime ReleaseDate { get; set; }
         public int Volume { get; set; }

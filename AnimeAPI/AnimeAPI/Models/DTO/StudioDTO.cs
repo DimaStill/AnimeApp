@@ -8,6 +8,9 @@ namespace AnimeAPI.Models.DTO
 {
     public class StudioDTO: IStudio
     {
+        public StudioDTO()
+        { }
+
         public string Name { get; set; }
         public string Link { get; set; }
     }

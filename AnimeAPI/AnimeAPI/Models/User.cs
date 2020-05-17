@@ -1,16 +1,25 @@
-﻿using System;
+﻿using AnimeAPI.Models.DTO;
+using AnimeAPI.Models.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AnimeAPI.Models
 {
-    public class User
+    public class User: UserDTO
     {
+        public User() : base()
+        { }
+
+        public User(UserDTO userDTO)
+        {
+            Login = userDTO.Login;
+            Password = userDTO.Password;
+            FavoritesManga = userDTO.FavoritesManga;
+            FavoritesAnime = userDTO.FavoritesAnime;
+        }
+
         public int Id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public ICollection<Manga> FavoritesManga { get; set; } = new List<Manga>();
-        public ICollection<Anime> FavoritesAnime { get; set; } = new List<Anime>();
     }
 }

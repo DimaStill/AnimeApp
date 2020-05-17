@@ -8,6 +8,9 @@ namespace AnimeAPI.Models.DTO
 {
     public class AnimeDTO: IAnime
     {
+        public AnimeDTO()
+        { }
+
         public string Name { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Studio { get; set; }
