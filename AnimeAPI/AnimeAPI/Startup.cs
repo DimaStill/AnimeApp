@@ -31,6 +31,7 @@ namespace AnimeAPI
             services.AddDbContext<AnimeContext>(options => options.UseSqlServer(connection));
             /*services.AddScoped<AnimeService>();*/
             services.AddScoped<GenreService>();
+            services.AddScoped<StudioService>();
             services.AddControllers();
         }
 
