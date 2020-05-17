@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnimeAPI.Models;
+using AnimeAPI.Models.Interfaces;
+using AnimeAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,36 +14,45 @@ namespace AnimeAPI.Controllers
     [ApiController]
     public class AnimeController : ControllerBase
     {
+        private readonly AnimeService animeService;
+        public AnimeController(AnimeService animeService)
+        {
+            this.animeService = animeService;
+        }
+
         // GET: api/Anime
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<IAnime>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await animeService.GetAllAnimes();
         }
 
         // GET: api/Anime/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "GetAnime")]
+        public async Task<IAnime> Get(int id)
         {
-            return "value";
+            return await animeService.GetAnimeById(id);
         }
 
         // POST: api/Anime
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IAnime> Post([FromBody] IAnime value)
         {
+            return await animeService.AddAnime(value);
         }
 
         // PUT: api/Anime/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IAnime> Put(int id, [FromBody] IAnime value)
         {
+            return await animeService.UpdateAnime(id, value);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IAnime> Delete(int id)
         {
+            return await animeService.DeleteAnime(id);
         }
     }
 }
