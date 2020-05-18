@@ -26,9 +26,9 @@ namespace AnimeAPI.Services
                 Type = "TestType",
                 CountEpisodes = 21
             };
-            var genre = new Genre() { Id = 0, Name = "XXX" };
+            var genre = new Genre() { Name = "XXX" };
             anime.Genres.Add(genre);
-            var testStudio = new Studio() { Id = 0, Name = "Google", Link = "google.com" };
+            var testStudio = new Studio() { Name = "Google", Link = "google.com" };
             anime.Voices.Add(testStudio);
 
             var manga = new Manga()
@@ -62,16 +62,40 @@ namespace AnimeAPI.Services
             return await db.Animes.FirstOrDefaultAsync(anime => anime.Id == animeId);
         }
 
-        public async Task<Anime> AddAnime(IAnime newAnime)
+        public async Task<Anime> AddAnime(AnimeDTO newAnimeDTO)
         {
+            List<Genre> selectedGenre = new List<Genre>();
+            foreach(var genreId in newAnimeDTO.GenreIds) {
+                selectedGenre.Add(await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId));
+            }
+
+            List<Studio> selectedVoices = new List<Studio>();
+            foreach (var voiceId in newAnimeDTO.VoiceIds)
+            {
+                selectedVoices.Add(await db.Studios.FirstOrDefaultAsync(voice => voice.Id == voiceId));
+            }
+
+            Anime newAnime = new Anime(newAnimeDTO, selectedGenre, selectedVoices);
             var result = await db.Animes.AddAsync(newAnime as Anime);
             await db.SaveChangesAsync();
 
             return result.Entity;
         }
 
-        public async Task<Anime> UpdateAnime(int id, IAnime updateAnime)
+        public async Task<Anime> UpdateAnime(int id, AnimeDTO updateAnime)
         {
+            List<Genre> selectedGenre = new List<Genre>();
+            foreach (var genreId in updateAnime.GenreIds)
+            {
+                selectedGenre.Add(await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId));
+            }
+
+            List<Studio> selectedVoices = new List<Studio>();
+            foreach (var voiceId in updateAnime.VoiceIds)
+            {
+                selectedVoices.Add(await db.Studios.FirstOrDefaultAsync(voice => voice.Id == voiceId));
+            }
+
             Anime anime = db.Animes.SingleOrDefault(anime => anime.Id == id);
 
             if (anime != null)
@@ -83,7 +107,8 @@ namespace AnimeAPI.Services
                 anime.Status = updateAnime.Status;
                 anime.Studio = updateAnime.Studio;
                 anime.Type = updateAnime.Type;
-                anime.Voices = updateAnime.Voices;
+                anime.Voices = selectedVoices;
+                anime.Genres = selectedGenre;
 
                 await db.SaveChangesAsync();
             }
