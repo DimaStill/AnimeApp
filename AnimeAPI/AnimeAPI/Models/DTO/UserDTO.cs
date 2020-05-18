@@ -13,7 +13,7 @@ namespace AnimeAPI.Models.DTO
 
         public string Login { get; set; }
         public string Password { get; set; }
-        public ICollection<Manga> FavoritesManga { get; set; } = new List<Manga>();
-        public ICollection<Anime> FavoritesAnime { get; set; } = new List<Anime>();
+        public ICollection<int> FavoritesMangaIds { get; set; } = new List<int>();
+        public ICollection<int> FavoritesAnimeIds { get; set; } = new List<int>();
     }
 }

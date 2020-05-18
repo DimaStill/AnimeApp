@@ -9,7 +9,7 @@ namespace AnimeAPI.Models.Interfaces
     {
         public string Login { get; set; }
         public string Password { get; set; }
-        public ICollection<Manga> FavoritesManga { get; set; }
-        public ICollection<Anime> FavoritesAnime { get; set; }
+        public ICollection<int> FavoritesMangaIds { get; set; }
+        public ICollection<int> FavoritesAnimeIds { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AnimeAPI.Models
 {
-    public class User: UserDTO
+    public class User
     {
         public User() : base()
         { }
@@ -16,10 +16,14 @@ namespace AnimeAPI.Models
         {
             Login = userDTO.Login;
             Password = userDTO.Password;
-            FavoritesManga = userDTO.FavoritesManga;
-            FavoritesAnime = userDTO.FavoritesAnime;
+            FavoritesMangas = null;
+            FavoritesAnimes = null;
         }
 
         public int Id { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public ICollection<Manga> FavoritesMangas { get; set; } = new List<Manga>();
+        public ICollection<Anime> FavoritesAnimes { get; set; } = new List<Anime>();
     }
 }
