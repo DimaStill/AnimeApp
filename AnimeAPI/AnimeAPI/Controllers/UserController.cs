@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AnimeAPI.Models;
+using AnimeAPI.Models.DTO;
 using AnimeAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,14 +35,14 @@ namespace AnimeAPI.Controllers
 
         // POST: api/User
         [HttpPost]
-        public async Task<User> Post([FromBody] User value)
+        public async Task<User> Post([FromBody] UserDTO value)
         {
             return await userService.AddUser(value);
         }
 
         // PUT: api/User/5
         [HttpPut("{id}")]
-        public async Task<User> Put(int id, [FromBody] User value)
+        public async Task<User> Put(int id, [FromBody] UserDTO value)
         {
             return await userService.UpdateUser(id, value);
         }

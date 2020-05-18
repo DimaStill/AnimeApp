@@ -1,4 +1,5 @@
 ﻿using AnimeAPI.Models;
+using AnimeAPI.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace AnimeAPI.Services
             return await db.Users.FirstOrDefaultAsync(user => user.Id == id);
         }
 
-        public async Task<User> AddUser(User newUserDTO)
+        public async Task<User> AddUser(UserDTO newUserDTO)
         {
             User newUser = new User(newUserDTO);
             var result = await db.Users.AddAsync(newUser);
@@ -35,16 +36,29 @@ namespace AnimeAPI.Services
             return result.Entity;
         }
 
-        public async Task<User> UpdateUser(int id, User updateUser)
+        public async Task<User> UpdateUser(int id, UserDTO updateUser)
         {
+            List<Manga> favoriteMangas = new List<Manga>();
+            foreach (int mangaId in updateUser.FavoritesMangaIds)
+            {
+                favoriteMangas.Add(await db.Mangas.FirstOrDefaultAsync(manga => manga.Id == mangaId));
+            }
+
+
+            List<Anime> favoriteAnimes = new List<Anime>();
+            foreach (int animeId in updateUser.FavoritesAnimeIds)
+            {
+                favoriteAnimes.Add(await db.Animes.FirstOrDefaultAsync(anime => anime.Id == animeId));
+            }
+
             User user = db.Users.SingleOrDefault(user => user.Id == id);
 
             if (user != null)
             {
                 user.Login = updateUser.Login;
                 user.Password = updateUser.Password;
-                user.FavoritesAnime = updateUser.FavoritesAnime;
-                user.FavoritesManga = updateUser.FavoritesManga;
+                user.FavoritesAnimes = favoriteAnimes;
+                user.FavoritesMangas = favoriteMangas;
 
                 await db.SaveChangesAsync();
             }
