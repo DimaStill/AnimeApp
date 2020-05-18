@@ -14,51 +14,19 @@ namespace AnimeAPI.Services
         private AnimeContext db;
         public AnimeService(AnimeContext animeContext) {
             db = animeContext;
-
-            /*var anime = new Anime()
-            {
-                Name = "Test",
-                ReleaseDate = DateTime.Now,
-                Season = 1,
-                Source = "TestSource",
-                Status = "Finish",
-                Studio = "TestStudio",
-                Type = "TestType",
-                CountEpisodes = 21
-            };
-            var genre = new Genre() { Name = "XXX" };
-            anime.Genres.Add(genre);
-            var testStudio = new Studio() { Name = "Google", Link = "google.com" };
-            anime.Voices.Add(testStudio);
-
-            var manga = new Manga()
-            {
-                Author = "TestAuthor",
-                Name = "TestManga",
-                ReleaseContinues = true,
-                Translater = "Google Translate",
-                Volume = 1
-            };
-            manga.Genres.Add(genre);
-
-            var user = new User() { Login = "admin", Password = "admin" };
-            user.FavoritesAnime.Add(anime);
-            user.FavoritesManga.Add(manga);
-
-            db.Animes.Add(anime);
-            db.Mangas.Add(manga);
-            db.Users.Add(user);
-
-            db.SaveChanges();*/
+            db.Genres.Load();
+            db.Studios.Load();
         }
 
         public async Task<List<Anime>> GetAllAnimes()
         {
+            await db.Animes.LoadAsync();
             return await db.Animes.ToListAsync();
         }
 
         public async Task<Anime> GetAnimeById(int animeId)
         {
+            await db.Animes.LoadAsync();
             return await db.Animes.FirstOrDefaultAsync(anime => anime.Id == animeId);
         }
 

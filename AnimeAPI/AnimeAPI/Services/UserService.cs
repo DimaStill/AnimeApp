@@ -15,15 +15,21 @@ namespace AnimeAPI.Services
         public UserService(AnimeContext animeContext)
         {
             db = animeContext;
+            db.Genres.Load();
+            db.Studios.Load();
+            db.Mangas.Load();
+            db.Animes.Load();
         }
 
         public async Task<List<User>> GetAllUsers()
         {
+            await db.Users.LoadAsync();
             return await db.Users.ToListAsync();
         }
 
         public async Task<User> GetUser(int id)
         {
+            await db.Users.LoadAsync();
             return await db.Users.FirstOrDefaultAsync(user => user.Id == id);
         }
 

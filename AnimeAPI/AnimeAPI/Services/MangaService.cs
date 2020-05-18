@@ -14,6 +14,7 @@ namespace AnimeAPI.Services
         public MangaService(AnimeContext animeContext)
         {
             db = animeContext;
+            db.Genres.Load();
         }
 
         public async Task<List<Manga>> GetAllMangas()
@@ -23,6 +24,7 @@ namespace AnimeAPI.Services
 
         public async Task<Manga> GetMangaById(int mangaId)
         {
+            await db.Genres.LoadAsync();
             return await db.Mangas.FirstOrDefaultAsync(manga => manga.Id == mangaId);
         }
 
