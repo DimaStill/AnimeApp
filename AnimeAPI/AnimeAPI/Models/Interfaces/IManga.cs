@@ -12,7 +12,7 @@ namespace AnimeAPI.Models.Interfaces
         public int Volume { get; set; }
         public bool ReleaseContinues { get; set; }
         public string Translater { get; set; }
-        public ICollection<Genre> Genres { get; set; }
+        public ICollection<int> GenreIds { get; set; }
         public string Author { get; set; }
     }
 }

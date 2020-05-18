@@ -16,7 +16,7 @@ namespace AnimeAPI.Models.DTO
         public int Volume { get; set; }
         public bool ReleaseContinues { get; set; }
         public string Translater { get; set; }
-        public ICollection<Genre> Genres { get; set; } = new List<Genre>();
+        public ICollection<int> GenreIds { get; set; } = new List<int>();
         public string Author { get; set; }
     }
 }
