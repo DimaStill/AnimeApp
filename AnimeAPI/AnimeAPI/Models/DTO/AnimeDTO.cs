@@ -17,9 +17,9 @@ namespace AnimeAPI.Models.DTO
         public string Type { get; set; }
         public int CountEpisodes { get; set; }
         public string Status { get; set; }
-        public ICollection<Genre> Genres { get; set; } = new List<Genre>();
+        public ICollection<int> GenreIds { get; set; } = new List<int>();
         public string Source { get; set; }
         public int Season { get; set; }
-        public ICollection<Studio> Voices { get; set; } = new List<Studio>();
+        public ICollection<int> VoiceIds { get; set; } = new List<int>();
     }
 }
