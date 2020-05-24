@@ -11,6 +11,7 @@ import Theme from "nativescript-theme-core";
     templateUrl: "app.component.html"
 })
 export class AppComponent implements OnInit {
+    private isLightMode = true;
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
 
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit {
     }
 
     changeMode() {
+        this.isLightMode = !this.isLightMode;
         Theme.setMode(
             Theme.getMode() === Theme.Light ? Theme.Dark : Theme.Light
         );

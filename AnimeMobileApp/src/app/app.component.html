@@ -40,9 +40,14 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
                     <Label col="1" text="Settings" class="p-r-10"></Label>
                 </GridLayout>
                 
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" (tap)="changeMode()">
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" (tap)="changeMode()" *ngIf="isLightMode">
                     <Label col="0" text="&#xf186;" class="nt-icon fas"></Label>
                     <Label col="1" text="Dark mode" class="p-r-10"></Label>
+                </GridLayout>
+                
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" (tap)="changeMode()" *ngIf="!isLightMode">
+                    <Label col="0" text="&#xf185;" class="nt-icon fas"></Label>
+                    <Label col="1" text="Light mode" class="p-r-10"></Label>
                 </GridLayout>
             </StackLayout>
         </ScrollView>
