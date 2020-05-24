@@ -9,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 
 export class UserIdentificationComponent implements OnInit {
 
+	isLoginForm = true;
+
 	constructor() { }
 
 	ngOnInit() { }
+
+	toggleLoginForm() {
+		this.isLoginForm = !this.isLoginForm;
+	}
 }

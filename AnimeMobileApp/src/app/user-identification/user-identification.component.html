@@ -11,11 +11,11 @@
     -->
     <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
     </ActionItem>
-    <Label text="Login"></Label>
+    <Label [text]="isLoginForm ? 'Login' : 'Registration'"></Label>
 </ActionBar>
 
 <GridLayout class="page__content">
-    <StackLayout class="nt-form">
+    <StackLayout class="nt-form" *ngIf="isLoginForm">
         <StackLayout class="nt-input">
             <Label text="Login" class="font-weight-bold m-b-5"></Label>
             <TextField hint="Login" class="-border m-t-10"></TextField>
@@ -27,6 +27,26 @@
         </StackLayout>
 
         <Button class="-primary -rounded-sm" text="Login"></Button>
-        <Button class="-outline" text="Don't have an account?"></Button>
+        <Button class="-outline" text="Don't have an account?" (tap)="toggleLoginForm()"></Button>
+    </StackLayout>
+    
+    <StackLayout class="nt-form" *ngIf="!isLoginForm">
+        <StackLayout class="nt-input">
+            <Label text="Login" class="font-weight-bold m-b-5"></Label>
+            <TextField hint="Login" class="-border m-t-10"></TextField>
+        </StackLayout>
+
+        <StackLayout class="nt-input">
+            <Label text="Password" class="font-weight-bold m-b-5"></Label>
+            <TextField hint="Password" class="-border m-t-10"></TextField>
+        </StackLayout>
+
+        <StackLayout class="nt-input">
+            <Label text="Repeat Password" class="font-weight-bold m-b-5"></Label>
+            <TextField hint="Repeat Password" class="-border m-t-10"></TextField>
+        </StackLayout>
+
+        <Button class="-primary -rounded-sm" text="Register"></Button>
+        <Button class="-outline" text="Already have an account?" (tap)="toggleLoginForm()"></Button>
     </StackLayout>
 </GridLayout>
