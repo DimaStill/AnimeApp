@@ -1,1 +1,118 @@
-<Label class="manga-list" text="Hello MangaListComponent!"></Label>
+<ActionBar>
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label text="Manga"></Label>
+</ActionBar>
+
+<ScrollView>
+    <GridLayout class="page__content" rows="auto, auto, auto, auto, auto, auto, auto, auto" columns="*, *">
+        <StackLayout width="40%" height="200" class="m-1" row="0" col="0">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test" textAlignment="center"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1" row="0" col="1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test" textAlignment="center"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1" row="1" col="0">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1" row="1" col="1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1" row="4">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <!-- <FlexboxLayout flexDirection="row" flexWrap="wrap" alignItems="baseline" justifyContent="space-around">
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+        <StackLayout width="40%" height="200" class="m-1">
+            <Image src="~/assets/default-image.jpg"></Image>
+            <Label text="test"></Label>
+        </StackLayout>
+    </FlexboxLayout> -->
+    </GridLayout>
+</ScrollView>
