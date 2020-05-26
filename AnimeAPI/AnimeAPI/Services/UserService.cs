@@ -1,5 +1,6 @@
 ﻿using AnimeAPI.Models;
 using AnimeAPI.Models.DTO;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,7 @@ namespace AnimeAPI.Services
             {
                 user.Login = updateUser.Login;
                 user.Password = updateUser.Password;
+                user.IsAdmin = updateUser.IsAdmin;
                 user.FavoritesAnimes = favoriteAnimes;
                 user.FavoritesMangas = favoriteMangas;
 
@@ -81,6 +83,14 @@ namespace AnimeAPI.Services
             await db.SaveChangesAsync();
 
             return deletedUser.Entity;
+        }
+
+        public async Task<User> Login(LoginUserDTO loginUserDTO)
+        {
+            User user = await db.Users.FirstOrDefaultAsync(user => user.Login == loginUserDTO.Login &&
+                user.Password == loginUserDTO.Password);
+
+            return user;
         }
     }
 }

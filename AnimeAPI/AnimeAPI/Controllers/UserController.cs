@@ -20,14 +20,14 @@ namespace AnimeAPI.Controllers
             this.userService = userService;
         }
         // GET: api/User
-        [HttpGet]
+        [HttpGet("GetAllUsers")]
         public async Task<IEnumerable<User>> Get()
         {
             return await userService.GetAllUsers();
         }
 
         // GET: api/User/5
-        [HttpGet("{id}", Name = "GetUsers")]
+        [HttpGet("GetUsers/{id}")]
         public async Task<User> Get(int id)
         {
             return await userService.GetUser(id);
@@ -38,6 +38,12 @@ namespace AnimeAPI.Controllers
         public async Task<User> Post([FromBody] UserDTO value)
         {
             return await userService.AddUser(value);
+        }
+
+        [HttpPost("LoginUser")]
+        public async Task<User> LoginUser(LoginUserDTO loginUserDTO)
+        {
+            return await userService.Login(loginUserDTO);
         }
 
         // PUT: api/User/5
