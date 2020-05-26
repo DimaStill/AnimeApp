@@ -1,1 +1,50 @@
-<Label class="anime-info" text="Hello AnimeInfoComponent!"></Label>
+<ActionBar>
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label text="Anime Info"></Label>
+</ActionBar>
+
+<ScrollView>
+    <StackLayout>
+        <Label text="Title" fontSize="20" class="m-auto"></Label>
+        <Image src="~/assets/default-image.jpg" class="m-auto"></Image>
+        <StackLayout orientation="horizontal">
+            <Label text="Status: "></Label>
+            <Label text="active" borderRadius="50%"></Label>
+        </StackLayout>
+        <StackLayout orientation="horizontal">
+            <Label text="Release date: "></Label>
+            <Label text="2020"></Label>
+        </StackLayout>
+        <StackLayout orientation="horizontal">
+            <Label text="Season: "></Label>
+            <Label text="1"></Label>
+        </StackLayout>
+        <StackLayout orientation="horizontal">
+            <Label text="Genre: "></Label>
+            <Label text="Comedy"></Label>
+        </StackLayout>
+        <StackLayout orientation="horizontal">
+            <Label text="Source: "></Label>
+            <Label text="Test"></Label>
+        </StackLayout>
+        <StackLayout orientation="horizontal">
+            <Label text="Studio: "></Label>
+            <Label text="Test"></Label>
+        </StackLayout>
+        <StackLayout orientation="horizontal">
+            <Label text="Author: "></Label>
+            <Label text="Test"></Label>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>
