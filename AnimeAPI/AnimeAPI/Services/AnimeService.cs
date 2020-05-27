@@ -77,6 +77,7 @@ namespace AnimeAPI.Services
                 anime.Type = updateAnime.Type;
                 anime.Voices = selectedVoices;
                 anime.Genres = selectedGenre;
+                anime.PhotoBase64 = updateAnime.PhotoBase64;
 
                 await db.SaveChangesAsync();
             }

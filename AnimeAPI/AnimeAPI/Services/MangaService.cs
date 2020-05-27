@@ -62,6 +62,7 @@ namespace AnimeAPI.Services
                 manga.Translater = updateManga.Translater;
                 manga.Genre = selectedGenre;
                 manga.Author = updateManga.Author;
+                manga.PhotoBase64 = updateManga.PhotoBase64;
 
                 await db.SaveChangesAsync();
             }

@@ -21,6 +21,7 @@ namespace AnimeAPI.Models
             Translater = mangaDTO.Translater;
             Genre = selectedGenres;
             Author = mangaDTO.Author;
+            PhotoBase64 = mangaDTO.PhotoBase64;
         }
 
         public int Id { get; set; }
@@ -31,5 +32,6 @@ namespace AnimeAPI.Models
         public string Translater { get; set; }
         public List<Genre> Genre { get; set; } = new List<Genre>();
         public string Author { get; set; }
+        public string PhotoBase64 { get; set; }
     }
 }

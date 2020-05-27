@@ -17,5 +17,6 @@ namespace AnimeAPI.Models.Interfaces
         public string Source { get; set; }
         public int Season { get; set; }
         public ICollection<int> VoiceIds { get; set; }
+        public string PhotoBase64 { get; set; }
     }
 }

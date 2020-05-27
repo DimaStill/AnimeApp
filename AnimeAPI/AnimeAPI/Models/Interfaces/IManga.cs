@@ -14,5 +14,6 @@ namespace AnimeAPI.Models.Interfaces
         public string Translater { get; set; }
         public ICollection<int> GenreIds { get; set; }
         public string Author { get; set; }
+        public string PhotoBase64 { get; set; }
     }
 }

@@ -21,5 +21,6 @@ namespace AnimeAPI.Models.DTO
         public string Source { get; set; }
         public int Season { get; set; }
         public ICollection<int> VoiceIds { get; set; } = new List<int>();
+        public string PhotoBase64 { get; set; }
     }
 }

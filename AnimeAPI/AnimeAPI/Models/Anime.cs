@@ -24,6 +24,7 @@ namespace AnimeAPI.Models
             Source = animeDTO.Source;
             Season = animeDTO.Season;
             Voices = selectedStudio;
+            PhotoBase64 = animeDTO.PhotoBase64;
         }
 
         public int Id { get; set; }
@@ -37,5 +38,6 @@ namespace AnimeAPI.Models
         public string Source { get; set; }
         public int Season { get; set; }
         public ICollection<Studio> Voices { get; set; } = new List<Studio>();
+        public string PhotoBase64 { get; set; }
     }
 }

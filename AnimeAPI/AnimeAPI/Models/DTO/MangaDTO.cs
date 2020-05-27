@@ -18,5 +18,6 @@ namespace AnimeAPI.Models.DTO
         public string Translater { get; set; }
         public ICollection<int> GenreIds { get; set; } = new List<int>();
         public string Author { get; set; }
+        public string PhotoBase64 { get; set; }
     }
 }
