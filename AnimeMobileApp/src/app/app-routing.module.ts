@@ -8,16 +8,12 @@ import { AnimeInfoComponent } from "./anime-list/anime-info/anime-info.component
 import { MangaInfoComponent } from "./manga-list/manga-info/manga-info.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/anime-info", pathMatch: "full" },
+    { path: "", redirectTo: "/identification-user", pathMatch: "full" },
     { path: "identification-user", component: UserIdentificationComponent },
     { path: "anime-list", component: AnimeListComponent },
     { path: "manga-list", component: MangaListComponent },
     { path: "anime-info", component: AnimeInfoComponent },
     { path: "manga-info", component: MangaInfoComponent },
-    { path: "browse", loadChildren: () => import("~/app/browse/browse.module").then((m) => m.BrowseModule) },
-    { path: "search", loadChildren: () => import("~/app/search/search.module").then((m) => m.SearchModule) },
-    { path: "featured", loadChildren: () => import("~/app/featured/featured.module").then((m) => m.FeaturedModule) },
-    { path: "settings", loadChildren: () => import("~/app/settings/settings.module").then((m) => m.SettingsModule) }
 ];
 
 @NgModule({

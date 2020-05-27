@@ -1,52 +1,42 @@
 <ActionBar>
-    <!-- 
-    Use the NavigationButton as a side-drawer button in Android
-    because ActionItems are shown on the right side of the ActionBar
-    -->
-    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
-    <!-- 
-    Use the ActionItem for IOS with position set to left. Using the
-    NavigationButton as a side-drawer button in iOS is not possible,
-    because its function is to always navigate back in the application.
-    -->
-    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
-    </ActionItem>
     <Label [text]="isLoginForm ? 'Login' : 'Registration'"></Label>
 </ActionBar>
 
-<GridLayout class="page__content">
-    <StackLayout class="nt-form" *ngIf="isLoginForm">
-        <StackLayout class="nt-input">
-            <Label text="Login" class="font-weight-bold m-b-5"></Label>
-            <TextField hint="Login" class="-border m-t-10"></TextField>
+<ScrollView>
+    <GridLayout class="page__content">
+        <StackLayout class="nt-form" *ngIf="isLoginForm">
+            <StackLayout class="nt-input">
+                <Label text="Login" class="font-weight-bold m-b-5"></Label>
+                <TextField hint="Login" class="-border m-t-10" [(ngModel)]="login"></TextField>
+            </StackLayout>
+
+            <StackLayout class="nt-input">
+                <Label text="Password" class="font-weight-bold m-b-5"></Label>
+                <TextField hint="Password" class="-border m-t-10" [(ngModel)]="password"></TextField>
+            </StackLayout>
+
+            <Button class="-primary -rounded-sm" text="Login" (tap)="loginUser()"></Button>
+            <Button class="-outline" text="Don't have an account?" (tap)="toggleLoginForm()"></Button>
         </StackLayout>
 
-        <StackLayout class="nt-input">
-            <Label text="Password" class="font-weight-bold m-b-5"></Label>
-            <TextField hint="Password" class="-border m-t-10"></TextField>
-        </StackLayout>
+        <StackLayout class="nt-form" *ngIf="!isLoginForm">
+            <StackLayout class="nt-input">
+                <Label text="Login" class="font-weight-bold m-b-5"></Label>
+                <TextField hint="Login" class="-border m-t-10" [(ngModel)]="login"></TextField>
+            </StackLayout>
 
-        <Button class="-primary -rounded-sm" text="Login"></Button>
-        <Button class="-outline" text="Don't have an account?" (tap)="toggleLoginForm()"></Button>
-    </StackLayout>
-    
-    <StackLayout class="nt-form" *ngIf="!isLoginForm">
-        <StackLayout class="nt-input">
-            <Label text="Login" class="font-weight-bold m-b-5"></Label>
-            <TextField hint="Login" class="-border m-t-10"></TextField>
-        </StackLayout>
+            <StackLayout class="nt-input">
+                <Label text="Password" class="font-weight-bold m-b-5"></Label>
+                <TextField hint="Password" class="-border m-t-10" [(ngModel)]="password"></TextField>
+            </StackLayout>
 
-        <StackLayout class="nt-input">
-            <Label text="Password" class="font-weight-bold m-b-5"></Label>
-            <TextField hint="Password" class="-border m-t-10"></TextField>
-        </StackLayout>
+            <StackLayout class="nt-input">
+                <Label text="Repeat Password" class="font-weight-bold m-b-5"></Label>
+                <TextField hint="Repeat Password" class="-border m-t-10" [(ngModel)]="repeatPassword"></TextField>
+            </StackLayout>
 
-        <StackLayout class="nt-input">
-            <Label text="Repeat Password" class="font-weight-bold m-b-5"></Label>
-            <TextField hint="Repeat Password" class="-border m-t-10"></TextField>
+            <Button class="-primary -rounded-sm" text="Register" (tap)="registration()"></Button>
+            <Button class="-outline" text="Already have an account?" (tap)="toggleLoginForm()"></Button>
         </StackLayout>
-
-        <Button class="-primary -rounded-sm" text="Register"></Button>
-        <Button class="-outline" text="Already have an account?" (tap)="toggleLoginForm()"></Button>
-    </StackLayout>
-</GridLayout>
+    </GridLayout>
+</ScrollView>

@@ -1,7 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
-
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { UserIdentificationComponent } from "./user-identification/user-identification.component";
@@ -11,6 +11,7 @@ import { AnimeInfoComponent } from "./anime-list/anime-info/anime-info.component
 import { MangaListComponent } from "./manga-list/manga-list.component";
 import { MangaCardComponent } from "./manga-list/manga-card/manga-card.component";
 import { MangaInfoComponent } from "./manga-list/manga-info/manga-info.component";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 @NgModule({
     bootstrap: [
@@ -19,7 +20,9 @@ import { MangaInfoComponent } from "./manga-list/manga-info/manga-info.component
     imports: [
         AppRoutingModule,
         NativeScriptModule,
-        NativeScriptUISideDrawerModule
+        NativeScriptUISideDrawerModule,
+        NativeScriptHttpClientModule,
+        NativeScriptFormsModule
     ],
     declarations: [
         AppComponent,
