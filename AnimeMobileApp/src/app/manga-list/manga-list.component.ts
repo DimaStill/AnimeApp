@@ -45,7 +45,7 @@ export class MangaListComponent implements OnInit {
 		return index % 2;
 	}
 	
-	selectAnime(manga: Manga) {
+	selectManga(manga: Manga) {
 		this.mangaService.setActiveManga(manga);
 		this.routerExtensions.navigate(['/manga-info'], { clearHistory: true });
 	}

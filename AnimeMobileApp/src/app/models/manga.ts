@@ -1,4 +1,5 @@
 export class Manga {
+    id: number;
     name: string;
     releaseDate: Date;
     volume: number;
