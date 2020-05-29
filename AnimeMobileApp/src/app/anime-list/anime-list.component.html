@@ -15,104 +15,13 @@
 </ActionBar>
 
 <ScrollView>
-    <GridLayout class="page__content" rows="auto, auto, auto, auto, auto, auto, auto, auto" columns="*, *">
-        <StackLayout width="40%" height="200" class="m-1" row="0" col="0">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test" textAlignment="center"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1" row="0" col="1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test" textAlignment="center"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1" row="1" col="0">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1" row="1" col="1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1" row="4">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <!-- <FlexboxLayout flexDirection="row" flexWrap="wrap" alignItems="baseline" justifyContent="space-around">
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-        <StackLayout width="40%" height="200" class="m-1">
-            <Image src="~/assets/default-image.jpg"></Image>
-            <Label text="test"></Label>
-        </StackLayout>
-    </FlexboxLayout> -->
-    </GridLayout>
+    <StackLayout *ngIf="animes?.length">
+        <GridLayout class="page__content" [rows]="getCountRows()" columns="*, *" class="m-y-5">
+            <StackLayout width="40%" height="200" class="m-1" *ngFor="let anime of animes; let i = index"
+                [row]="getRow(i)" [col]="getCol(i)" (tap)="selectAnime(anime)">
+                <Image [src]="'data:image/png;base64,' + anime.photoBase64" height="70%"></Image>
+                <Label [text]="anime.name" textAlignment="center" textWrap="true" fontSize="16px"></Label>
+            </StackLayout>
+        </GridLayout>
+    </StackLayout>
 </ScrollView>

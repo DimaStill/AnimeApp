@@ -5,6 +5,8 @@ import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nat
 import { filter } from "rxjs/operators";
 import * as app from "tns-core-modules/application";
 import Theme from "nativescript-theme-core";
+import { User } from "./models/user";
+import { UserService } from "./services/userService";
 
 @Component({
     selector: "ns-app",
@@ -14,12 +16,14 @@ export class AppComponent implements OnInit {
     private isLightMode = true;
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
+    activeUser: User;
 
-    constructor(private router: Router, private routerExtensions: RouterExtensions) {
+    constructor(private router: Router, private routerExtensions: RouterExtensions, private userService: UserService) {
         // Use the component constructor to inject services.
     }
 
     ngOnInit(): void {
+        this.getActiveUser();
         this._activatedUrl = "/home";
         this._sideDrawerTransition = new SlideInOnTopTransition();
 
@@ -52,5 +56,11 @@ export class AppComponent implements OnInit {
         Theme.setMode(
             Theme.getMode() === Theme.Light ? Theme.Dark : Theme.Light
         );
+    }
+
+    getActiveUser() {
+        this.userService.activeUser$.subscribe(user => {
+            this.activeUser = user;
+        })
     }
 }

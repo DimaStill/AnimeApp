@@ -7,35 +7,37 @@
         <StackLayout class="nt-form" *ngIf="isLoginForm">
             <StackLayout class="nt-input">
                 <Label text="Login" class="font-weight-bold m-b-5"></Label>
-                <TextField hint="Login" class="-border m-t-10" [(ngModel)]="login"></TextField>
+                <TextField hint="Login" class="-border m-t-10" #SigninLogin></TextField>
             </StackLayout>
 
             <StackLayout class="nt-input">
                 <Label text="Password" class="font-weight-bold m-b-5"></Label>
-                <TextField hint="Password" class="-border m-t-10" [(ngModel)]="password"></TextField>
+                <TextField hint="Password" class="-border m-t-10" #SigninPassword></TextField>
             </StackLayout>
 
-            <Button class="-primary -rounded-sm" text="Login" (tap)="loginUser()"></Button>
+            <Button class="-primary -rounded-sm" text="Login"
+                (tap)="loginUser(SigninLogin.text, SigninPassword.text)"></Button>
             <Button class="-outline" text="Don't have an account?" (tap)="toggleLoginForm()"></Button>
         </StackLayout>
 
         <StackLayout class="nt-form" *ngIf="!isLoginForm">
             <StackLayout class="nt-input">
                 <Label text="Login" class="font-weight-bold m-b-5"></Label>
-                <TextField hint="Login" class="-border m-t-10" [(ngModel)]="login"></TextField>
+                <TextField hint="Login" class="-border m-t-10" #SignupLogin></TextField>
             </StackLayout>
 
             <StackLayout class="nt-input">
                 <Label text="Password" class="font-weight-bold m-b-5"></Label>
-                <TextField hint="Password" class="-border m-t-10" [(ngModel)]="password"></TextField>
+                <TextField hint="Password" class="-border m-t-10" #SignupPassword></TextField>
             </StackLayout>
 
             <StackLayout class="nt-input">
                 <Label text="Repeat Password" class="font-weight-bold m-b-5"></Label>
-                <TextField hint="Repeat Password" class="-border m-t-10" [(ngModel)]="repeatPassword"></TextField>
+                <TextField hint="Repeat Password" class="-border m-t-10" #SignupRepeatPassword></TextField>
             </StackLayout>
 
-            <Button class="-primary -rounded-sm" text="Register" (tap)="registration()"></Button>
+            <Button class="-primary -rounded-sm" text="Register"
+                (tap)="registration(SignupLogin.text, SignupPassword.text, SignupRepeatPassword.text)"></Button>
             <Button class="-outline" text="Already have an account?" (tap)="toggleLoginForm()"></Button>
         </StackLayout>
     </GridLayout>

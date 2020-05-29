@@ -26,9 +26,6 @@ export class UserIdentificationComponent implements OnInit {
 	}
 
 	toggleLoginForm() {
-		this.login = '';
-		this.password = '';
-		this.repeatPassword = '';
 		this.isLoginForm = !this.isLoginForm;
 	}
 	
@@ -37,32 +34,30 @@ export class UserIdentificationComponent implements OnInit {
         sideDrawer.showDrawer();
 	}
 	
-	registration() {
-		if (this.password === this.repeatPassword) {
+	registration(login: string, password: string, repeatPassword: string) {
+		if (password === repeatPassword) {
 			const newUser = {
-				login: this.login,
-				password: this.password
+				login: login,
+				password: password
 			}
 
 			this.userService.registration(newUser).subscribe(newUser => {
 				if (newUser) {
-					this.login = '';
-					this.password = '';
-					this.repeatPassword = '';
 					this.isLoginForm = true;
 				}
 			});
 		}
 	}
 
-	loginUser() {
+	loginUser(login: string, password: string) {
 		const user = {
-			login: this.login,
-			password: this.password
+			login: login,
+			password: password
 		}
 
 		this.userService.loginUser(user).subscribe(user => {
 			if (user) {
+				this.userService.setActiveUser(user);
 				this.routerExtensions.navigate(['/anime-list'], { clearHistory: true });
 			}
 		});

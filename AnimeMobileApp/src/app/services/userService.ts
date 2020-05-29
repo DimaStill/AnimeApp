@@ -1,7 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { serverUrl } from '../urlConstants';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { User } from '../models/user';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-	activeUser$: Subject<User>;
+	activeUser$ = new BehaviorSubject<User>(undefined);
 
 	constructor(private httpClient: HttpClient) { }
 
@@ -19,6 +19,10 @@ export class UserService {
 
 	registration(body): Observable<User> {
 		return this.httpClient.post<User>(`${serverUrl}/api/user`, body);
+	}
+
+	putUser(body, id): Observable<User> {
+		return this.httpClient.put<User>(`${serverUrl}/api/user/${id}`, body)
 	}
 
 	setActiveUser(user: User) {
