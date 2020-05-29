@@ -14,12 +14,12 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
             <StackLayout>
                 <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/anime-list')" (tap)="onNavItemTap('/anime-list')">
                     <Label col="0" text="&#xf015;" class="nt-icon fas"></Label>
-                    <Label col="1" text="Home" class="p-r-10"></Label>
+                    <Label col="1" text="Anime" class="p-r-10"></Label>
                 </GridLayout>
 
                 <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/manga-list')" (tap)="onNavItemTap('/manga-list')">
                     <Label col="0" text="&#xf1ea;" class="nt-icon far"></Label>
-                    <Label col="1" text="Browse" class="p-r-10"></Label>
+                    <Label col="1" text="Manga" class="p-r-10"></Label>
                 </GridLayout>
 
                 <StackLayout class="hr"></StackLayout>
