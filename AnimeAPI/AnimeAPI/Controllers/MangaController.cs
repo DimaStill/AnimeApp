@@ -22,35 +22,35 @@ namespace AnimeAPI.Controllers
 
         // GET: api/Manga
         [HttpGet]
-        public async Task<IEnumerable<Manga>> Get()
+        public async Task<IEnumerable<MangaDTO>> Get()
         {
             return await animeService.GetAllMangas();
         }
 
         // GET: api/Manga/5
         [HttpGet("{id}", Name = "Get")]
-        public async Task<Manga> Get(int id)
+        public async Task<MangaDTO> Get(int id)
         {
             return await animeService.GetMangaById(id);
         }
 
         // POST: api/Manga
         [HttpPost]
-        public async Task<Manga> Post([FromBody] MangaDTO value)
+        public async Task<MangaDTO> Post([FromBody] MangaDTO value)
         {
             return await animeService.AddManga(value);
         }
 
         // PUT: api/Manga/5
         [HttpPut("{id}")]
-        public async Task<Manga> Put(int id, [FromBody] MangaDTO value)
+        public async Task<MangaDTO> Put(int id, [FromBody] MangaDTO value)
         {
             return await animeService.UpdateManga(id, value);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public async Task<Manga> Delete(int id)
+        public async Task<MangaDTO> Delete(int id)
         {
             return await animeService.DeleteManga(id);
         }

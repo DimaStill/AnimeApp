@@ -17,38 +17,46 @@ namespace AnimeAPI.Services
             db.Genres.Load();
         }
 
-        public async Task<List<Manga>> GetAllMangas()
+        public async Task<List<MangaDTO>> GetAllMangas()
         {
-            return await db.Mangas.ToListAsync();
+            return MangaDTO.getListMangaDTOsFromManga(await db.Mangas.ToListAsync());
         }
 
-        public async Task<Manga> GetMangaById(int mangaId)
+        public async Task<MangaDTO> GetMangaById(int mangaId)
         {
             await db.Genres.LoadAsync();
-            return await db.Mangas.FirstOrDefaultAsync(manga => manga.Id == mangaId);
+            return new MangaDTO(await db.Mangas.FirstOrDefaultAsync(manga => manga.Id == mangaId));
         }
 
-        public async Task<Manga> AddManga(MangaDTO newMangaDTO)
+        public async Task<MangaDTO> AddManga(MangaDTO newMangaDTO)
         {
             List<Genre> selectedGenre = new List<Genre>();
             foreach (var genreId in newMangaDTO.GenreIds)
             {
-                selectedGenre.Add(await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId));
+                Genre genre = await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId);
+                if (genre != null)
+                {
+                    selectedGenre.Add(genre);
+                }
             }
 
             Manga newManga = new Manga(newMangaDTO, selectedGenre);
             var result = await db.Mangas.AddAsync(newManga as Manga);
             await db.SaveChangesAsync();
 
-            return result.Entity;
+            return new MangaDTO(result.Entity);
         }
 
-        public async Task<Manga> UpdateManga(int id, MangaDTO updateManga)
+        public async Task<MangaDTO> UpdateManga(int id, MangaDTO updateManga)
         {
             List<Genre> selectedGenre = new List<Genre>();
             foreach (var genreId in updateManga.GenreIds)
             {
-                selectedGenre.Add(await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId));
+                Genre genre = await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId);
+                if (genre != null)
+                {
+                    selectedGenre.Add(genre);
+                }
             }
 
             Manga manga = db.Mangas.SingleOrDefault(manga => manga.Id == id);
@@ -67,15 +75,15 @@ namespace AnimeAPI.Services
                 await db.SaveChangesAsync();
             }
 
-            return manga;
+            return new MangaDTO(manga);
         }
 
-        public async Task<Manga> DeleteManga(int id)
+        public async Task<MangaDTO> DeleteManga(int id)
         {
             Manga manga = await db.Mangas.FirstOrDefaultAsync(manga => manga.Id == id);
             var deletedManga = db.Mangas.Remove(manga);
 
-            return deletedManga.Entity;
+            return new MangaDTO(deletedManga.Entity);
         }
     }
 }
