@@ -53,26 +53,26 @@ namespace AnimeAPI.Services
             db.SaveChanges();*/
         }
 
-        public async Task<List<Genre>> GetAllGenres()
+        public async Task<List<GenreDTO>> GetAllGenres()
         {
-            return await db.Genres.ToListAsync();
+            return GenreDTO.GetGenreDTOsFromGenre(await db.Genres.ToListAsync());
         }
 
-        public async Task<Genre> GetGenreById(int genreId)
+        public async Task<GenreDTO> GetGenreById(int genreId)
         {
-            return await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId);
+            return new GenreDTO(await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId));
         }
 
-        public async Task<Genre> AddGenre(GenreDTO newGenreDTO)
+        public async Task<GenreDTO> AddGenre(GenreDTO newGenreDTO)
         {
             Genre newGenre = new Genre(newGenreDTO);
             var result = await db.Genres.AddAsync(newGenre);
             await db.SaveChangesAsync();
 
-            return result.Entity;
+            return new GenreDTO(result.Entity);
         }
 
-        public async Task<Genre> UpdateGenre(int id, IGenre updateGenre)
+        public async Task<GenreDTO> UpdateGenre(int id, IGenre updateGenre)
         {
             Genre genre = db.Genres.SingleOrDefault(genre => genre.Id == id);
 
@@ -83,17 +83,17 @@ namespace AnimeAPI.Services
                 await db.SaveChangesAsync();
             }
 
-            return genre;
+            return new GenreDTO(genre);
         }
 
-        public async Task<Genre> DeleteGenre(int id)
+        public async Task<GenreDTO> DeleteGenre(int id)
         {
             Genre genre = await db.Genres.FirstOrDefaultAsync(genre => genre.Id == id);
             var deletedGenre = db.Genres.Remove(genre);
 
             await db.SaveChangesAsync();
 
-            return deletedGenre.Entity;
+            return new GenreDTO(deletedGenre.Entity);
         }
     }
 }
