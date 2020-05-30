@@ -22,6 +22,7 @@ export class MangaInfoComponent implements OnInit {
 		private userService: UserService) { }
 
 	ngOnInit() {
+		console.log('TEST');
 		this.getActiveManga();
 		this.getActiveUser();
 	}
