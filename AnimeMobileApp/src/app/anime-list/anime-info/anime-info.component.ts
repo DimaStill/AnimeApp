@@ -39,24 +39,26 @@ export class AnimeInfoComponent implements OnInit {
 	}
 
 	addFavorite() {
-		if (!this.activeUser.favoritesAnimes) {
-			this.activeUser.favoritesAnimes = new Array<Anime>();
+		if (!this.activeUser.favoritesAnimeIds) {
+			this.activeUser.favoritesAnimeIds = new Array<number>();
 		}
-		this.activeUser.favoritesAnimes.push(this.anime);
+		
+		const index = this.activeUser.favoritesAnimeIds.indexOf(this.anime.id);
+		if (index === -1) {
+			this.activeUser.favoritesAnimeIds.push(this.anime.id);
+		}
 		this.userService.putUser(this.activeUser, this.activeUser.id).subscribe(user => {
 			this.userService.activeUser$.next(user);
 		});
 	}
 
 	removeFavorite() {
-		const index = this.activeUser.favoritesAnimes.indexOf(this.anime);
+		const index = this.activeUser.favoritesAnimeIds.indexOf(this.anime.id);
 		if (index !== -1) { 
-			this.activeUser.favoritesAnimes.splice(index, 1);
+			this.activeUser.favoritesAnimeIds.splice(index, 1);
 		}
-		const idFavoriteAnime = {
-			favoritesAnimes: this.activeUser.favoritesAnimes
-		}
-		this.userService.putUser(idFavoriteAnime, this.activeUser.id).subscribe(user => {
+		
+		this.userService.putUser(this.activeUser.favoritesAnimeIds, this.activeUser.id).subscribe(user => {
 			this.userService.activeUser$.next(user);
 		});
 	}
@@ -68,8 +70,8 @@ export class AnimeInfoComponent implements OnInit {
 	}
 
 	isFavorite() {
-		return this.activeUser.favoritesAnimes && this.activeUser.favoritesAnimes.some(favorite => {
-			this.anime.id === favorite.id;
+		return this.activeUser.favoritesAnimeIds && this.activeUser.favoritesAnimeIds.some(favoriteId => {
+			return this.anime.id === favoriteId;
 		});
 	}
 }

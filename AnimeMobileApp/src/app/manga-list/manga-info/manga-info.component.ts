@@ -38,24 +38,21 @@ export class MangaInfoComponent implements OnInit {
 	}
 
 	addFavorite() {
-		if (!this.activeUser.favoritesMangas) {
-			this.activeUser.favoritesMangas = new Array<Manga>();
+		if (!this.activeUser.favoritesMangaIds) {
+			this.activeUser.favoritesMangaIds = new Array<number>();
 		}
-		this.activeUser.favoritesMangas.push(this.manga);
+		this.activeUser.favoritesMangaIds.push(this.manga.id);
 		this.userService.putUser(this.activeUser, this.activeUser.id).subscribe(user => {
 			this.userService.activeUser$.next(user);
 		});
 	}
 
 	removeFavorite() {
-		const index = this.activeUser.favoritesMangas.indexOf(this.manga);
+		const index = this.activeUser.favoritesMangaIds.indexOf(this.manga.id);
 		if (index !== -1) { 
-			this.activeUser.favoritesMangas.splice(index, 1);
+			this.activeUser.favoritesMangaIds.splice(index, 1);
 		}
-		const idFavoriteManga = {
-			favoritesMangas: this.activeUser.favoritesMangas
-		}
-		this.userService.putUser(idFavoriteManga, this.activeUser.id).subscribe(user => {
+		this.userService.putUser(this.activeUser, this.activeUser.id).subscribe(user => {
 			this.userService.activeUser$.next(user);
 		});
 	}
@@ -67,8 +64,8 @@ export class MangaInfoComponent implements OnInit {
 	}
 
 	isFavorite() {
-		return this.activeUser.favoritesMangas && this.activeUser.favoritesMangas.some(favorite => {
-			this.manga.id === favorite.id;
+		return this.activeUser.favoritesMangaIds && this.activeUser.favoritesMangaIds.some(favoriteId => {
+			return this.manga.id === favoriteId;
 		});
 	}
 }

@@ -6,6 +6,6 @@ export class User {
     login: string;
     password: string;
     isAdmin: boolean;
-    favoritesMangas: Array<Manga>;
-    favoritesAnimes: Array<Anime>;
+    favoritesMangaIds: Array<number>;
+    favoritesAnimeIds: Array<number>;
 }
