@@ -36,7 +36,7 @@ namespace AnimeAPI.Controllers
 
         // GET: api/Manga/5
         [HttpGet("MangaPages/{id}", Name = "GetMangaPages")]
-        public async Task<MangaPagesDTO> GetMangaPages(int id)
+        public async Task<MangaPages> GetMangaPages(int id)
         {
             return await animeService.GetMangaPages(id);
         }
@@ -46,6 +46,13 @@ namespace AnimeAPI.Controllers
         public async Task<MangaDTO> Post([FromBody] MangaDTO value)
         {
             return await animeService.AddManga(value);
+        }
+
+        // POST: api/Manga
+        [HttpPost("AddMangaPages", Name = "AddMangaPages")]
+        public async Task<MangaPages> Post([FromBody] AddMangaPagesDTO value)
+        {
+            return await animeService.AddMangaPages(value);
         }
 
         // PUT: api/Manga/5

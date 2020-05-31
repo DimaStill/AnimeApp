@@ -15,6 +15,8 @@ namespace AnimeAPI.Services
         {
             db = animeContext;
             db.Genres.Load();
+            db.Pages.Load();
+            db.Mangas.Load();
         }
 
         public async Task<List<MangaDTO>> GetAllMangas()
@@ -86,9 +88,34 @@ namespace AnimeAPI.Services
             return new MangaDTO(deletedManga.Entity);
         }
 
-        public async Task<MangaPagesDTO> GetMangaPages(int mangaId)
+        public async Task<MangaPages> GetMangaPages(int mangaId)
         {
-            return new MangaPagesDTO(await db.MangaPages.FirstOrDefaultAsync(mangaPages => mangaPages.Manga.Id == mangaId));
-        } 
+            return await db.MangaPages.FirstOrDefaultAsync(mangaPages => mangaPages.Manga.Id == mangaId);
+        }
+
+        public async Task<MangaPages> AddMangaPages(AddMangaPagesDTO addMangaPagesDTO)
+        {
+            //foreach (Page page in addMangaPagesDTO.Pages)
+            //{
+            //    db.Pages.Add(page);
+            //}
+            MangaPages isExistMangaPages = await db.MangaPages.FirstOrDefaultAsync(mangaPages => 
+                mangaPages.Manga.Id == addMangaPagesDTO.MangaId);
+            if (isExistMangaPages == null)
+            {
+                return null;
+            }
+
+            Manga manga = await db.Mangas.FirstOrDefaultAsync(findManga => addMangaPagesDTO.MangaId == findManga.Id);
+            MangaPages addMangaPages = new MangaPages(addMangaPagesDTO, manga);
+            await db.MangaPages.AddAsync(addMangaPages);
+            int countChanges = await db.SaveChangesAsync();
+
+            if (countChanges < 0)
+            {
+                return null;
+            }
+            return addMangaPages;
+        }
     }
 }
