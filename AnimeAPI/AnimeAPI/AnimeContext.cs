@@ -21,7 +21,7 @@ namespace AnimeAPI
         public AnimeContext(DbContextOptions<AnimeContext> options)
             : base(options)
         {
-            /*Database.EnsureDeleted();*/
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
     }

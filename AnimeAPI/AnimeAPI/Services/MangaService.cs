@@ -101,7 +101,7 @@ namespace AnimeAPI.Services
             //}
             MangaPages isExistMangaPages = await db.MangaPages.FirstOrDefaultAsync(mangaPages => 
                 mangaPages.Manga.Id == addMangaPagesDTO.MangaId);
-            if (isExistMangaPages == null)
+            if (isExistMangaPages != null)
             {
                 return null;
             }
