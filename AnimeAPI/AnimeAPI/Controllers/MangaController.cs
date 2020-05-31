@@ -34,6 +34,13 @@ namespace AnimeAPI.Controllers
             return await animeService.GetMangaById(id);
         }
 
+        // GET: api/Manga/5
+        [HttpGet("MangaPages/{id}", Name = "GetMangaPages")]
+        public async Task<MangaPagesDTO> GetMangaPages(int id)
+        {
+            return await animeService.GetMangaPages(id);
+        }
+
         // POST: api/Manga
         [HttpPost]
         public async Task<MangaDTO> Post([FromBody] MangaDTO value)

@@ -85,5 +85,10 @@ namespace AnimeAPI.Services
 
             return new MangaDTO(deletedManga.Entity);
         }
+
+        public async Task<MangaPagesDTO> GetMangaPages(int mangaId)
+        {
+            return new MangaPagesDTO(await db.MangaPages.FirstOrDefaultAsync(mangaPages => mangaPages.Manga.Id == mangaId));
+        } 
     }
 }
