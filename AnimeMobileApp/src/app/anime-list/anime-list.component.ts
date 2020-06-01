@@ -47,6 +47,6 @@ export class AnimeListComponent implements OnInit {
 	
 	selectAnime(anime: Anime) {
 		this.animeService.setActiveAnime(anime);
-		this.routerExtensions.navigate(['/anime-info'], { clearHistory: true });
+		this.routerExtensions.navigate(['/anime-info'], { clearHistory: false });
 	}
 }

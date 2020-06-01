@@ -5,6 +5,7 @@ import { MangaService } from '~/app/services/mangaService';
 import { UserService } from '~/app/services/userService';
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import * as app from "tns-core-modules/application";
+import { RouterExtensions } from 'nativescript-angular/router';
 
 @Component({
 	moduleId: module.id,
@@ -19,7 +20,8 @@ export class MangaInfoComponent implements OnInit {
 	activeUser: User;
 
 	constructor(private mangaService: MangaService,
-		private userService: UserService) { }
+		private userService: UserService,
+		private routerExtensions: RouterExtensions) { }
 
 	ngOnInit() {
 		console.log('TEST');
@@ -68,5 +70,9 @@ export class MangaInfoComponent implements OnInit {
 		return this.activeUser.favoritesMangaIds && this.activeUser.favoritesMangaIds.some(favoriteId => {
 			return this.manga.id === favoriteId;
 		});
+	}
+
+	readManga() {
+		this.routerExtensions.navigate(['/manga-read'], { clearHistory: false });
 	}
 }

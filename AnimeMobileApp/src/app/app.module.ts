@@ -12,6 +12,7 @@ import { MangaListComponent } from "./manga-list/manga-list.component";
 import { MangaCardComponent } from "./manga-list/manga-card/manga-card.component";
 import { MangaInfoComponent } from "./manga-list/manga-info/manga-info.component";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { MangaReaderComponent } from "./manga-list/manga-reader/manga-reader.component";
 
 @NgModule({
     bootstrap: [
@@ -32,7 +33,8 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
         AnimeInfoComponent,
         MangaListComponent,
         MangaCardComponent,
-        MangaInfoComponent
+        MangaInfoComponent,
+        MangaReaderComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

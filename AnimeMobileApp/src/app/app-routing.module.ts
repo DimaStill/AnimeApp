@@ -6,6 +6,7 @@ import { AnimeListComponent } from "./anime-list/anime-list.component";
 import { MangaListComponent } from "./manga-list/manga-list.component";
 import { AnimeInfoComponent } from "./anime-list/anime-info/anime-info.component";
 import { MangaInfoComponent } from "./manga-list/manga-info/manga-info.component";
+import { MangaReaderComponent } from "./manga-list/manga-reader/manga-reader.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/identification-user", pathMatch: "full" },
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: "manga-list", component: MangaListComponent },
     { path: "anime-info", component: AnimeInfoComponent },
     { path: "manga-info", component: MangaInfoComponent },
+    { path: "manga-read", component: MangaReaderComponent }
 ];
 
 @NgModule({

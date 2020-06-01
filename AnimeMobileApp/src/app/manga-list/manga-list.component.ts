@@ -47,6 +47,6 @@ export class MangaListComponent implements OnInit {
 	
 	selectManga(manga: Manga) {
 		this.mangaService.setActiveManga(manga);
-		this.routerExtensions.navigate(['/manga-info'], { clearHistory: true });
+		this.routerExtensions.navigate(['/manga-info'], { clearHistory: false });
 	}
 }
