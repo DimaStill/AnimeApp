@@ -1,0 +1,51 @@
+<!--
+RadSideDrawer is a UI component part of the Progress NativeScript UI set of components.
+Learn more about the RadSideDrawer UI component and how it can be customized in this documentation article:
+https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawer/getting-started
+-->
+<RadSideDrawer [drawerTransition]="sideDrawerTransition">
+    <GridLayout tkDrawerContent rows="auto, *" class="nt-drawer__content">
+        <StackLayout row="0" class="nt-drawer__header">
+            <Image class="nt-drawer__header-image fas t-36" src="font://&#xf2bd;"></Image>
+            <Label class="nt-drawer__header-brand" text="{{ activeUser?.login }}"></Label>
+        </StackLayout>
+    
+        <ScrollView row="1" class="nt-drawer__body">
+            <StackLayout>
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/anime-list')" (tap)="onNavItemTap('/anime-list')">
+                    <Label col="0" text="&#xf1ea;" class="nt-icon fas"></Label>
+                    <Label col="1" text="Anime" class="p-r-10"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/manga-list')" (tap)="onNavItemTap('/manga-list')">
+                    <Label col="0" text="&#xf1ea;" class="nt-icon far"></Label>
+                    <Label col="1" text="Manga" class="p-r-10"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/favorite-manga')" (tap)="onNavItemTap('/favorite-manga')">
+                    <Label col="0" text="&#xf1ea;" class="nt-icon far"></Label>
+                    <Label col="1" text="Favorite Manga" class="p-r-10"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/favorite-anime')" (tap)="onNavItemTap('/favorite-anime')">
+                    <Label col="0" text="&#xf1ea;" class="nt-icon far"></Label>
+                    <Label col="1" text="Favorite Anime" class="p-r-10"></Label>
+                </GridLayout>
+
+                <StackLayout class="hr"></StackLayout>
+                
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" (tap)="changeMode()" *ngIf="isLightMode">
+                    <Label col="0" text="&#xf186;" class="nt-icon fas"></Label>
+                    <Label col="1" text="Dark mode" class="p-r-10"></Label>
+                </GridLayout>
+                
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" (tap)="changeMode()" *ngIf="!isLightMode">
+                    <Label col="0" text="&#xf185;" class="nt-icon fas"></Label>
+                    <Label col="1" text="Light mode" class="p-r-10"></Label>
+                </GridLayout>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+
+    <page-router-outlet tkMainContent></page-router-outlet>
+</RadSideDrawer>

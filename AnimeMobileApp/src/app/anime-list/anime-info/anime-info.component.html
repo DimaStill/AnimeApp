@@ -1,0 +1,56 @@
+<ActionBar>
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label text="Anime Info"></Label>
+    <ActionItem icon="font://&#xf004;" class="nt-icon far" ios.position="right" *ngIf="!isFavorite()" (tap)="addFavorite()"></ActionItem>
+    <ActionItem icon="font://&#xf004;" class="nt-icon fas" ios.position="right" *ngIf="isFavorite()" (tap)="removeFavorite()"></ActionItem>
+</ActionBar>
+
+<ScrollView>
+    <StackLayout>
+        <Label text="{{ anime.name }}" textAlign="center" fontSize="20" class="m-x-auto m-y-5 title"></Label>
+        <Image [src]="'data:image/png;base64,' + anime.photoBase64" width="50%" class="m-auto m-y-5"></Image>
+        <StackLayout class="info">
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Status: ">
+                </Label>
+                <Label text="{{ anime.status }}" backgroundColor="{{ anime.status == 'Active' ? 'green' : 'red' }}" color="white"
+                    borderRadius="50%" class="p-5"></Label>
+            </StackLayout>
+            <!-- <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Release date: "></Label>
+                <Label text="TEST"></Label>
+            </StackLayout> -->
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Season: "></Label>
+                <Label text="{{ anime.season }}"></Label>
+            </StackLayout>
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Genre: "></Label>
+                <Label *ngFor="let genre of genres" text="{{ genre.name }}  "></Label>
+            </StackLayout>
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Source: "></Label>
+                <Label text="{{ anime.source }}"></Label>
+            </StackLayout>
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Studio: "></Label>
+                <Label *ngFor="let studio of studios" text="{{ studio.name }}  "></Label>
+            </StackLayout>
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Author: "></Label>
+                <Label text="{{ anime.studio }}"></Label>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

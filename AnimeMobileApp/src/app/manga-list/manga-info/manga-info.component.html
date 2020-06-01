@@ -1,0 +1,53 @@
+<ActionBar>
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label text="Manga Info"></Label>
+    <ActionItem icon="font://&#xf004;" class="nt-icon far" ios.position="right" *ngIf="!isFavorite()" (tap)="addFavorite()"></ActionItem>
+    <ActionItem icon="font://&#xf004;" class="nt-icon fas" ios.position="right" *ngIf="isFavorite()" (tap)="removeFavorite()"></ActionItem>
+</ActionBar>
+
+<ScrollView>
+    <StackLayout>
+        <Label text="{{ manga.name }}" textAlign="center" fontSize="20" class="m-x-auto m-y-5 title"></Label>
+        <Image [src]="'data:image/png;base64,' + manga.photoBase64" width="50%" class="m-auto m-y-5"></Image>
+        <StackLayout class="info">
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Status: ">
+                </Label>
+                <Label text="{{ manga.releaseContinues ? 'Continues' : 'Finished' }}" backgroundColor="{{ manga.releaseContinues ? 'green' : 'red' }}" 
+                color="white" borderRadius="50%" class="p-5"></Label>
+            </StackLayout>
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Release date: "></Label>
+                <Label text="{{ manga.releaseDate }}"></Label>
+            </StackLayout>
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Volume: "></Label>
+                <Label text="{{ manga.volume }}"></Label>
+            </StackLayout>
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Genre: "></Label>
+                <Label *ngFor="let genre of genres" text="{{ genre.name }}  "></Label>
+            </StackLayout>
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Author: "></Label>
+                <Label text="{{ manga.author }}"></Label>
+            </StackLayout>
+            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+                <Label text="Translater: "></Label>
+                <Label text="{{ manga.translater }}"></Label>
+            </StackLayout>
+        </StackLayout>
+        <Button text="Read manga" class="-primary -rounded-sm" (tap)="readManga()"></Button>
+    </StackLayout>
+</ScrollView>
