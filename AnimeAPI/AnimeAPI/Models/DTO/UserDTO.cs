@@ -23,13 +23,20 @@ namespace AnimeAPI.Models.DTO
             Login = user.Login;
             Password = user.Password;
             IsAdmin = user.IsAdmin;
-            foreach (var anime in user.FavoritesAnimes)
+            if (user.FavoritesAnimes != null)
             {
-                FavoritesAnimeIds.Add(anime.Id);
+                foreach (var anime in user.FavoritesAnimes)
+                {
+                    FavoritesAnimeIds.Add(anime.Id);
+                }
             }
-            foreach (var manga in user.FavoritesMangas)
+
+            if (user.FavoritesMangas != null)
             {
-                FavoritesMangaIds.Add(manga.Id);
+                foreach (var manga in user.FavoritesMangas)
+                {
+                    FavoritesMangaIds.Add(manga.Id);
+                }
             }
         }
 
