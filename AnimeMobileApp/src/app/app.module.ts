@@ -13,6 +13,8 @@ import { MangaCardComponent } from "./manga-list/manga-card/manga-card.component
 import { MangaInfoComponent } from "./manga-list/manga-info/manga-info.component";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { MangaReaderComponent } from "./manga-list/manga-reader/manga-reader.component";
+import { FavoriteMangaComponent } from "./manga-list/favorite-manga/favorite-manga.component";
+import { FavoriteAnimeComponent } from "./anime-list/favorite-anime/favorite-anime.component";
 
 @NgModule({
     bootstrap: [
@@ -34,7 +36,9 @@ import { MangaReaderComponent } from "./manga-list/manga-reader/manga-reader.com
         MangaListComponent,
         MangaCardComponent,
         MangaInfoComponent,
-        MangaReaderComponent
+        MangaReaderComponent,
+        FavoriteMangaComponent,
+        FavoriteAnimeComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
