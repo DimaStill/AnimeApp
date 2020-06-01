@@ -15,11 +15,13 @@ namespace AnimeAPI
         public DbSet<Manga> Mangas { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Studio> Studios { get; set; }
+        public DbSet<MangaPages> MangaPages { get; set; }
+        public DbSet<Page> Pages { get; set; }
 
         public AnimeContext(DbContextOptions<AnimeContext> options)
             : base(options)
         {
-            /*Database.EnsureDeleted();*/
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
     }

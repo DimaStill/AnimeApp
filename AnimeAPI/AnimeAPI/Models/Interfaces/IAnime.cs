@@ -7,6 +7,7 @@ namespace AnimeAPI.Models.Interfaces
 {
     public interface IAnime
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Studio { get; set; }

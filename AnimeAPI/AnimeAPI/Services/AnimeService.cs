@@ -18,50 +18,66 @@ namespace AnimeAPI.Services
             db.Studios.Load();
         }
 
-        public async Task<List<Anime>> GetAllAnimes()
+        public async Task<List<AnimeDTO>> GetAllAnimes()
         {
             await db.Animes.LoadAsync();
-            return await db.Animes.ToListAsync();
+            return AnimeDTO.getListAnimeDTOsFromAnime(await db.Animes.ToListAsync());
         }
 
-        public async Task<Anime> GetAnimeById(int animeId)
+        public async Task<AnimeDTO> GetAnimeById(int animeId)
         {
             await db.Animes.LoadAsync();
-            return await db.Animes.FirstOrDefaultAsync(anime => anime.Id == animeId);
+            return new AnimeDTO(await db.Animes.FirstOrDefaultAsync(anime => anime.Id == animeId));
         }
 
-        public async Task<Anime> AddAnime(AnimeDTO newAnimeDTO)
+        public async Task<AnimeDTO> AddAnime(AnimeDTO newAnimeDTO)
         {
             List<Genre> selectedGenre = new List<Genre>();
             foreach(var genreId in newAnimeDTO.GenreIds) {
-                selectedGenre.Add(await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId));
+                Genre genre = await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId);
+                if (genre != null)
+                {
+                    selectedGenre.Add(genre);
+                }
             }
 
             List<Studio> selectedVoices = new List<Studio>();
             foreach (var voiceId in newAnimeDTO.VoiceIds)
             {
-                selectedVoices.Add(await db.Studios.FirstOrDefaultAsync(voice => voice.Id == voiceId));
+                Studio voice = await db.Studios.FirstOrDefaultAsync(voice => voice.Id == voiceId);
+                if (voice != null)
+                {
+                    selectedVoices.Add(voice);
+                }
             }
 
             Anime newAnime = new Anime(newAnimeDTO, selectedGenre, selectedVoices);
             var result = await db.Animes.AddAsync(newAnime as Anime);
             await db.SaveChangesAsync();
 
-            return result.Entity;
+            return new AnimeDTO(result.Entity);
         }
 
-        public async Task<Anime> UpdateAnime(int id, AnimeDTO updateAnime)
+        public async Task<AnimeDTO> UpdateAnime(int id, AnimeDTO updateAnime)
         {
             List<Genre> selectedGenre = new List<Genre>();
             foreach (var genreId in updateAnime.GenreIds)
             {
-                selectedGenre.Add(await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId));
+                Genre genre = await db.Genres.FirstOrDefaultAsync(genre => genre.Id == genreId);
+                if (genre != null)
+                {
+                    selectedGenre.Add(genre);
+                }
             }
 
             List<Studio> selectedVoices = new List<Studio>();
             foreach (var voiceId in updateAnime.VoiceIds)
             {
-                selectedVoices.Add(await db.Studios.FirstOrDefaultAsync(voice => voice.Id == voiceId));
+                Studio voice = await db.Studios.FirstOrDefaultAsync(voice => voice.Id == voiceId);
+                if (voice != null)
+                {
+                    selectedVoices.Add(voice);
+                }
             }
 
             Anime anime = db.Animes.SingleOrDefault(anime => anime.Id == id);
@@ -82,15 +98,15 @@ namespace AnimeAPI.Services
                 await db.SaveChangesAsync();
             }
 
-            return anime;
+            return new AnimeDTO(anime);
         }
 
-        public async Task<Anime> DeleteAnime(int id)
+        public async Task<AnimeDTO> DeleteAnime(int id)
         {
             Anime anime = await db.Animes.FirstOrDefaultAsync(anime => anime.Id == id);
             var deletedAnime = db.Animes.Remove(anime);
 
-            return deletedAnime.Entity;
+            return new AnimeDTO(deletedAnime.Entity);
         }
     }
 }

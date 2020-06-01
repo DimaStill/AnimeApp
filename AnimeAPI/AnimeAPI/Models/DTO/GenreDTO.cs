@@ -10,7 +10,25 @@ namespace AnimeAPI.Models.DTO
     {
         public GenreDTO() 
         { }
+    
+        public GenreDTO(Genre genre)
+        {
+            Id = genre.Id;
+            Name = genre.Name;
+        }
 
+        public int Id { get; set; }
         public string Name { get; set; }
+
+        public static List<GenreDTO> GetGenreDTOsFromGenre(List<Genre> genres)
+        {
+            List<GenreDTO> genreDTOs = new List<GenreDTO>();
+            foreach (Genre genre in genres)
+            {
+                genreDTOs.Add(new GenreDTO(genre));
+            }
+
+            return genreDTOs;
+        }
     }
 }

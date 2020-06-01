@@ -1,0 +1,11 @@
+<ActionBar>
+    <Label text="Read Manga"></Label>
+</ActionBar>
+
+<GridLayout rows="9*, auto">
+    <Image [src]="getPage()" row="0"></Image>
+    <StackLayout orientation="horizontal" row="1" class="m-x-a">
+        <button text="Previous" *ngIf="currentPage > 0" (tap)="goPrevPage()" class="-primary -rounded-sm"></button>
+        <Button text="Next" *ngIf="currentPage + 1 < mangaPages?.pages.length" (tap)="goNextPage()" class="-primary -rounded-sm"></Button>
+    </StackLayout>
+</GridLayout>

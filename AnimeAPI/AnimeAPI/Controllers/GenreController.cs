@@ -23,35 +23,35 @@ namespace AnimeAPI.Controllers
 
         // GET: api/Genre
         [HttpGet]
-        public async Task<IEnumerable<IGenre>> Get()
+        public async Task<List<GenreDTO>> Get()
         {
             return await genreService.GetAllGenres();
         }
 
         // GET: api/Genre/5
         [HttpGet("{id}", Name = "GetGenre")]
-        public async Task<Genre> Get(int id)
+        public async Task<GenreDTO> Get(int id)
         {
             return await genreService.GetGenreById(id);
         }
 
         // POST: api/Genre
         [HttpPost]
-        public async Task<Genre> Post([FromBody] GenreDTO value)
+        public async Task<GenreDTO> Post([FromBody] GenreDTO value)
         {
             return await genreService.AddGenre(value);
         }
 
         // PUT: api/Genre/5
         [HttpPut("{id}")]
-        public async Task<Genre> Put(int id, [FromBody] GenreDTO value)
+        public async Task<GenreDTO> Put(int id, [FromBody] GenreDTO value)
         {
             return await genreService.UpdateGenre(id, value);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public async Task<Genre> Delete(int id)
+        public async Task<GenreDTO> Delete(int id)
         {
             return await genreService.DeleteGenre(id);
         }

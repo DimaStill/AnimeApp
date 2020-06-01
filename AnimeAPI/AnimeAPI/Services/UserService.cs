@@ -22,40 +22,48 @@ namespace AnimeAPI.Services
             db.Animes.Load();
         }
 
-        public async Task<List<User>> GetAllUsers()
+        public async Task<List<UserDTO>> GetAllUsers()
         {
             await db.Users.LoadAsync();
-            return await db.Users.ToListAsync();
+            return UserDTO.getListUserDTOsFromUser(await db.Users.ToListAsync());
         }
 
-        public async Task<User> GetUser(int id)
+        public async Task<UserDTO> GetUser(int id)
         {
             await db.Users.LoadAsync();
-            return await db.Users.FirstOrDefaultAsync(user => user.Id == id);
+            return new UserDTO(await db.Users.FirstOrDefaultAsync(user => user.Id == id));
         }
 
-        public async Task<User> AddUser(UserDTO newUserDTO)
+        public async Task<UserDTO> AddUser(UserDTO newUserDTO)
         {
             User newUser = new User(newUserDTO);
             var result = await db.Users.AddAsync(newUser);
             await db.SaveChangesAsync();
 
-            return result.Entity;
+            return new UserDTO(result.Entity);
         }
 
-        public async Task<User> UpdateUser(int id, UserDTO updateUser)
+        public async Task<UserDTO> UpdateUser(int id, UserDTO updateUser)
         {
             List<Manga> favoriteMangas = new List<Manga>();
             foreach (int mangaId in updateUser.FavoritesMangaIds)
             {
-                favoriteMangas.Add(await db.Mangas.FirstOrDefaultAsync(manga => manga.Id == mangaId));
+                Manga favoriteManga = await db.Mangas.FirstOrDefaultAsync(manga => manga.Id == mangaId);
+                if (favoriteManga != null)
+                {
+                    favoriteMangas.Add(favoriteManga);
+                }
             }
 
 
             List<Anime> favoriteAnimes = new List<Anime>();
             foreach (int animeId in updateUser.FavoritesAnimeIds)
             {
-                favoriteAnimes.Add(await db.Animes.FirstOrDefaultAsync(anime => anime.Id == animeId));
+                Anime favoriteAnime = await db.Animes.FirstOrDefaultAsync(anime => anime.Id == animeId);
+                if (favoriteAnime != null)
+                {
+                    favoriteAnimes.Add(favoriteAnime);
+                }
             }
 
             User user = db.Users.SingleOrDefault(user => user.Id == id);
@@ -71,26 +79,26 @@ namespace AnimeAPI.Services
                 await db.SaveChangesAsync();
             }
 
-            return user;
+            return new UserDTO(user);
 
         }
 
-        public async Task<User> DeleteUser(int id)
+        public async Task<UserDTO> DeleteUser(int id)
         {
             User user = await db.Users.FirstOrDefaultAsync(user => user.Id == id);
             var deletedUser = db.Users.Remove(user);
 
             await db.SaveChangesAsync();
 
-            return deletedUser.Entity;
+            return new UserDTO(deletedUser.Entity);
         }
 
-        public async Task<User> Login(LoginUserDTO loginUserDTO)
+        public async Task<UserDTO> Login(LoginUserDTO loginUserDTO)
         {
             User user = await db.Users.FirstOrDefaultAsync(user => user.Login == loginUserDTO.Login &&
                 user.Password == loginUserDTO.Password);
 
-            return user;
+            return new UserDTO(user);
         }
     }
 }

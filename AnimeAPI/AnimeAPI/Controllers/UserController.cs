@@ -21,41 +21,41 @@ namespace AnimeAPI.Controllers
         }
         // GET: api/User
         [HttpGet("GetAllUsers")]
-        public async Task<IEnumerable<User>> Get()
+        public async Task<IEnumerable<UserDTO>> Get()
         {
             return await userService.GetAllUsers();
         }
 
         // GET: api/User/5
         [HttpGet("GetUsers/{id}")]
-        public async Task<User> Get(int id)
+        public async Task<UserDTO> Get(int id)
         {
             return await userService.GetUser(id);
         }
 
         // POST: api/User
         [HttpPost]
-        public async Task<User> Post([FromBody] UserDTO value)
+        public async Task<UserDTO> Post([FromBody] UserDTO value)
         {
             return await userService.AddUser(value);
         }
 
         [HttpPost("LoginUser")]
-        public async Task<User> LoginUser(LoginUserDTO loginUserDTO)
+        public async Task<UserDTO> LoginUser(LoginUserDTO loginUserDTO)
         {
             return await userService.Login(loginUserDTO);
         }
 
         // PUT: api/User/5
         [HttpPut("{id}")]
-        public async Task<User> Put(int id, [FromBody] UserDTO value)
+        public async Task<UserDTO> Put(int id, [FromBody] UserDTO value)
         {
             return await userService.UpdateUser(id, value);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public async Task<User> Delete(int id)
+        public async Task<UserDTO> Delete(int id)
         {
             return await userService.DeleteUser(id);
         }
