@@ -6,6 +6,8 @@ import { UserService } from '~/app/services/userService';
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import * as app from "tns-core-modules/application";
 import { RouterExtensions } from 'nativescript-angular/router';
+import { Genre } from '~/app/models/genre';
+import { GenreService } from '~/app/services/genreService';
 
 @Component({
 	moduleId: module.id,
@@ -18,10 +20,12 @@ export class MangaInfoComponent implements OnInit {
 
 	manga: Manga;
 	activeUser: User;
+	genres = new Array<Genre>();
 
 	constructor(private mangaService: MangaService,
 		private userService: UserService,
-		private routerExtensions: RouterExtensions) { }
+		private routerExtensions: RouterExtensions,
+		private genreService: GenreService) { }
 
 	ngOnInit() {
 		console.log('TEST');
@@ -37,6 +41,7 @@ export class MangaInfoComponent implements OnInit {
 	getActiveManga() {
 		this.mangaService.activeManga$.subscribe(manga => {
 			this.manga = manga;
+			this.getGenres();
 		});
 	}
 
@@ -74,5 +79,13 @@ export class MangaInfoComponent implements OnInit {
 
 	readManga() {
 		this.routerExtensions.navigate(['/manga-read'], { clearHistory: false });
+	}
+	
+	getGenres() {
+		this.manga.genreIds.forEach(genreId => {
+			this.genreService.getGenre(genreId).subscribe(genre => {
+				this.genres.push(genre);
+			});
+		});
 	}
 }

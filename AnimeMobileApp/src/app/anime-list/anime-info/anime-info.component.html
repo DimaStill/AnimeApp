@@ -27,17 +27,17 @@
                 <Label text="{{ anime.status }}" backgroundColor="{{ anime.status == 'Active' ? 'green' : 'red' }}" color="white"
                     borderRadius="50%" class="p-5"></Label>
             </StackLayout>
-            <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
+            <!-- <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Release date: "></Label>
                 <Label text="TEST"></Label>
-            </StackLayout>
+            </StackLayout> -->
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Season: "></Label>
                 <Label text="{{ anime.season }}"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Genre: "></Label>
-                <Label text="TestComedy"></Label>
+                <Label *ngFor="let genre of genres" text="{{ genre.name }}  "></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Source: "></Label>
@@ -45,7 +45,7 @@
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Studio: "></Label>
-                <Label text="TestVoices"></Label>
+                <Label *ngFor="let studio of studios" text="{{ studio.name }}  "></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Author: "></Label>

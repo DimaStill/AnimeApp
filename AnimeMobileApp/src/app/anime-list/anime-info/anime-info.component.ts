@@ -6,6 +6,10 @@ import { AnimeService } from '~/app/services/animeService';
 import { Anime } from '~/app/models/anime';
 import { UserService } from '~/app/services/userService';
 import { User } from '~/app/models/user';
+import { GenreService } from '~/app/services/genreService';
+import { Genre } from '~/app/models/genre';
+import { StudioService } from '~/app/services/studioService';
+import { Studio } from '~/app/models/studio';
 
 @Component({
 	moduleId: module.id,
@@ -18,9 +22,13 @@ export class AnimeInfoComponent implements OnInit {
 
 	anime: Anime;
 	activeUser: User;
+	genres = new Array<Genre>();
+	studios = new Array<Studio>();
 
 	constructor(private animeService: AnimeService,
-		private userService: UserService) { }
+		private userService: UserService,
+		private genreService: GenreService,
+		private studioService: StudioService) { }
 
 	ngOnInit() {
 		this.getActiveAnime();
@@ -35,6 +43,7 @@ export class AnimeInfoComponent implements OnInit {
 	getActiveAnime() {
 		this.animeService.activeUser$.subscribe(anime => {
 			this.anime = anime;
+			this.getGenres();
 		});
 	}
 
@@ -72,6 +81,22 @@ export class AnimeInfoComponent implements OnInit {
 	isFavorite() {
 		return this.activeUser.favoritesAnimeIds && this.activeUser.favoritesAnimeIds.some(favoriteId => {
 			return this.anime.id === favoriteId;
+		});
+	}
+	
+	getGenres() {
+		this.anime.genreIds.forEach(genreId => {
+			this.genreService.getGenre(genreId).subscribe(genre => {
+				this.genres.push(genre);
+			});
+		});
+	}
+
+	getVoices() {
+		this.anime.voiceIds.forEach(voiceId => {
+			this.studioService.getStudio(voiceId).subscribe(voice => {
+				this.studios.push(voice);
+			});
 		});
 	}
 }
