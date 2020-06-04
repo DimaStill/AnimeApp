@@ -15,6 +15,7 @@ namespace AnimeAPI.Services
         {
             db = animeContext;
             db.Genres.Load();
+            db.Studios.Load();
             db.Pages.Load();
             db.Mangas.Load();
         }
@@ -42,7 +43,17 @@ namespace AnimeAPI.Services
                 }
             }
 
-            Manga newManga = new Manga(newMangaDTO, selectedGenre);
+            List<Studio> selectedStudio = new List<Studio>();
+            foreach (var studioId in newMangaDTO.TranslaterIds)
+            {
+                Studio studio = await db.Studios.FirstOrDefaultAsync(studio => studio.Id == studioId);
+                if (studio != null)
+                {
+                    selectedStudio.Add(studio);
+                }
+            }
+
+            Manga newManga = new Manga(newMangaDTO, selectedGenre, selectedStudio);
             var result = await db.Mangas.AddAsync(newManga as Manga);
             await db.SaveChangesAsync();
 
@@ -61,6 +72,16 @@ namespace AnimeAPI.Services
                 }
             }
 
+            List<Studio> selectedStudio = new List<Studio>();
+            foreach (var studioId in updateManga.TranslaterIds)
+            {
+                Studio studio = await db.Studios.FirstOrDefaultAsync(studio => studio.Id == studioId);
+                if (studio != null)
+                {
+                    selectedStudio.Add(studio);
+                }
+            }
+
             Manga manga = db.Mangas.SingleOrDefault(manga => manga.Id == id);
 
             if (manga != null)
@@ -69,7 +90,7 @@ namespace AnimeAPI.Services
                 manga.ReleaseDate = updateManga.ReleaseDate;
                 manga.Volume = updateManga.Volume;
                 manga.ReleaseContinues = updateManga.ReleaseContinues;
-                manga.Translater = updateManga.Translater;
+                manga.Translater = selectedStudio;
                 manga.Genre = selectedGenre;
                 manga.Author = updateManga.Author;
                 manga.PhotoBase64 = updateManga.PhotoBase64;

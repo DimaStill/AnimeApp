@@ -18,9 +18,13 @@ namespace AnimeAPI.Models.DTO
             ReleaseDate = manga.ReleaseDate;
             Volume = manga.Volume;
             ReleaseContinues = manga.ReleaseContinues;
-            Translater = manga.Translater;
             Author = manga.Author;
             PhotoBase64 = manga.PhotoBase64;
+
+            foreach (Studio studio in manga.Translater)
+            {
+                TranslaterIds.Add(studio.Id);
+            }
 
             foreach (Genre genre in manga.Genre)
             {
@@ -33,7 +37,7 @@ namespace AnimeAPI.Models.DTO
         public DateTime ReleaseDate { get; set; }
         public int Volume { get; set; }
         public bool ReleaseContinues { get; set; }
-        public string Translater { get; set; }
+        public ICollection<int> TranslaterIds { get; set; }
         public ICollection<int> GenreIds { get; set; } = new List<int>();
         public string Author { get; set; }
         public string PhotoBase64 { get; set; }
