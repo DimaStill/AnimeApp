@@ -9,7 +9,7 @@ namespace AnimeAPI.Models.Interfaces
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public string ReleaseDate { get; set; }
         public string Studio { get; set; }
         public string Type { get; set; }
         public int CountEpisodes { get; set; }
