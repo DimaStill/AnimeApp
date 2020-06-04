@@ -8,6 +8,7 @@ import * as app from "tns-core-modules/application";
 import { RouterExtensions } from 'nativescript-angular/router';
 import { Genre } from '~/app/models/genre';
 import { GenreService } from '~/app/services/genreService';
+import * as utils from "tns-core-modules/utils/utils";
 
 @Component({
 	moduleId: module.id,

@@ -45,7 +45,8 @@
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Studio: "></Label>
-                <Label *ngFor="let studio of studios" text="{{ studio.name }}  "></Label>
+                <Label *ngFor="let studio of studios" text="{{ studio.name }}  " (tap)="openURL(studio.link)" class="primary" color="#8503b2">
+                </Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Author: "></Label>

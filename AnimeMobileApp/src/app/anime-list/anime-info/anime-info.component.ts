@@ -10,6 +10,7 @@ import { GenreService } from '~/app/services/genreService';
 import { Genre } from '~/app/models/genre';
 import { StudioService } from '~/app/services/studioService';
 import { Studio } from '~/app/models/studio';
+import * as utils from "tns-core-modules/utils/utils";
 
 @Component({
 	moduleId: module.id,
@@ -44,6 +45,7 @@ export class AnimeInfoComponent implements OnInit {
 		this.animeService.activeUser$.subscribe(anime => {
 			this.anime = anime;
 			this.getGenres();
+			this.getVoices();
 		});
 	}
 
@@ -98,5 +100,9 @@ export class AnimeInfoComponent implements OnInit {
 				this.studios.push(voice);
 			});
 		});
+	}
+
+	openURL(url: string) {
+		utils.openUrl(url);
 	}
 }

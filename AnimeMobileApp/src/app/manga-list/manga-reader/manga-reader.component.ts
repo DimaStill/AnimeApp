@@ -46,6 +46,7 @@ export class MangaReaderComponent implements OnInit {
 
 	getPage(index: number) {
 		if (this.mangaPages) {
+			console.log(this.mangaPages.pages[this.currentPage].pageImageBase64);
 			return 'data:image/png;base64,' + this.mangaPages.pages[this.currentPage].pageImageBase64;
 		}
 		return '';
