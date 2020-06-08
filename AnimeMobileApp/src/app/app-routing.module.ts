@@ -10,6 +10,7 @@ import { MangaReaderComponent } from "./manga-list/manga-reader/manga-reader.com
 import { FavoriteMangaComponent } from "./manga-list/favorite-manga/favorite-manga.component";
 import { FavoriteAnimeComponent } from "./anime-list/favorite-anime/favorite-anime.component";
 import { AnnouncementsComponent } from "./anime-list/announcements/announcements.component";
+import { OnGoingComponent } from "./anime-list/on-going/on-going.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/identification-user", pathMatch: "full" },
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: "favorite-manga", component: FavoriteMangaComponent },
     { path: "favorite-anime", component: FavoriteAnimeComponent },
     { path: "announcements-anime", component: AnnouncementsComponent },
+    { path: "on-going", component: OnGoingComponent },
 ];
 
 @NgModule({

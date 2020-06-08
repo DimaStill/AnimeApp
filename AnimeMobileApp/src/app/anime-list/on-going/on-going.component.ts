@@ -8,12 +8,12 @@ import * as moment from 'moment';
 
 @Component({
 	moduleId: module.id,
-	selector: 'announcements',
-	templateUrl: './announcements.component.html',
-	styleUrls: ['./announcements.component.scss']
+	selector: 'on-going',
+	templateUrl: './on-going.component.html',
+	styleUrls: ['./on-going.component.scss']
 })
 
-export class AnnouncementsComponent implements OnInit {
+export class OnGoingComponent implements OnInit {
 	animes: Array<Anime>;
 
 	constructor(private routerExtensions: RouterExtensions,
@@ -31,7 +31,7 @@ export class AnnouncementsComponent implements OnInit {
 	getAllAnime() {
 		this.animeService.getAllAnime().subscribe(animes => {
 			this.animes = animes.filter(anime => {
-				return moment(anime.releaseDate, 'dd.MM.yyyy').isAfter(new Date());
+				return anime.status === 'Active' && moment(anime.releaseDate, 'dd.MM.yyyy').isBefore(new Date());
 			});
 		});
 	}

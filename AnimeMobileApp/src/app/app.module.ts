@@ -16,6 +16,7 @@ import { MangaReaderComponent } from "./manga-list/manga-reader/manga-reader.com
 import { FavoriteMangaComponent } from "./manga-list/favorite-manga/favorite-manga.component";
 import { FavoriteAnimeComponent } from "./anime-list/favorite-anime/favorite-anime.component";
 import { AnnouncementsComponent } from "./anime-list/announcements/announcements.component";
+import { OnGoingComponent } from "./anime-list/on-going/on-going.component";
 
 @NgModule({
     bootstrap: [
@@ -40,7 +41,8 @@ import { AnnouncementsComponent } from "./anime-list/announcements/announcements
         MangaReaderComponent,
         FavoriteMangaComponent,
         FavoriteAnimeComponent,
-        AnnouncementsComponent
+        AnnouncementsComponent,
+        OnGoingComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
