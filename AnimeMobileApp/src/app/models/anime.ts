@@ -9,5 +9,6 @@ export class Anime {
   source: string;
   season: number;
   voiceIds: Array<number>;
-  photoBase64: string
+  photoBase64: string;
+  releaseDate: string;
 }

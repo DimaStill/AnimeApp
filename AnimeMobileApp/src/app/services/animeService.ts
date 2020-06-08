@@ -15,7 +15,7 @@ export class AnimeService {
 	constructor(private httpClient: HttpClient) { }
 
 	getAllAnime(): Observable<Array<Anime>> {
-		return this.httpClient.get<Array<Anime>>(`${serverUrl}/api/anime`);
+		return this.httpClient.get<Array<Anime>>(`${serverUrl}/api/anime/GetAllAnimes`);
 	}
 
 	setActiveAnime(anime: Anime) {

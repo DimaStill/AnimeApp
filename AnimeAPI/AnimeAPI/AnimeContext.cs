@@ -17,6 +17,7 @@ namespace AnimeAPI
         public DbSet<Studio> Studios { get; set; }
         public DbSet<MangaPages> MangaPages { get; set; }
         public DbSet<Page> Pages { get; set; }
+        public DbSet<Anime> Announcement { get; set; }
 
         public AnimeContext(DbContextOptions<AnimeContext> options)
             : base(options)

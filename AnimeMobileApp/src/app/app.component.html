@@ -32,6 +32,11 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
                     <Label col="1" text="Favorite Anime" class="p-r-10"></Label>
                 </GridLayout>
 
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/announcements-anime')" (tap)="onNavItemTap('/announcements-anime')">
+                    <Label col="0" text="&#xf1ea;" class="nt-icon far"></Label>
+                    <Label col="1" text="Announcements Anime" class="p-r-10"></Label>
+                </GridLayout>
+
                 <StackLayout class="hr"></StackLayout>
                 
                 <GridLayout columns="auto, *" class="nt-drawer__list-item" (tap)="changeMode()" *ngIf="isLightMode">

@@ -22,10 +22,16 @@ namespace AnimeAPI.Controllers
         }
 
         // GET: api/Anime
-        [HttpGet]
+        [HttpGet("GetAllAnimes", Name = "GetAllAnimes")]
         public async Task<IEnumerable<AnimeDTO>> Get()
         {
             return await animeService.GetAllAnimes();
+        }
+
+        [HttpGet("GetAllAnnouncements", Name = "GetAllAnnouncements")]
+        public async Task<IEnumerable<AnimeDTO>> GetAnnouncements()
+        {
+            return await animeService.GetAnnouncements();
         }
 
         // GET: api/Anime/5

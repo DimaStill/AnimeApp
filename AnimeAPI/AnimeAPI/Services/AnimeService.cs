@@ -108,5 +108,11 @@ namespace AnimeAPI.Services
 
             return new AnimeDTO(deletedAnime.Entity);
         }
+
+        public async Task<List<AnimeDTO>> GetAnnouncements()
+        {
+            await db.Announcement.LoadAsync();
+            return AnimeDTO.getListAnimeDTOsFromAnime(await db.Announcement.ToListAsync());
+        }
     }
 }

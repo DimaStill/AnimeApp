@@ -15,6 +15,7 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { MangaReaderComponent } from "./manga-list/manga-reader/manga-reader.component";
 import { FavoriteMangaComponent } from "./manga-list/favorite-manga/favorite-manga.component";
 import { FavoriteAnimeComponent } from "./anime-list/favorite-anime/favorite-anime.component";
+import { AnnouncementsComponent } from "./anime-list/announcements/announcements.component";
 
 @NgModule({
     bootstrap: [
@@ -38,7 +39,8 @@ import { FavoriteAnimeComponent } from "./anime-list/favorite-anime/favorite-ani
         MangaInfoComponent,
         MangaReaderComponent,
         FavoriteMangaComponent,
-        FavoriteAnimeComponent
+        FavoriteAnimeComponent,
+        AnnouncementsComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
