@@ -34,7 +34,7 @@ export class AnimeListComponent implements OnInit {
 	}
 	
 	getCountRows() {
-		return 'auto'.repeat(Math.ceil(this.animes.length / 2));
+		return 'auto, '.repeat(Math.ceil(this.animes.length / 2));
 	}
 
 	getRow(index: number) {

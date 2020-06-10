@@ -34,7 +34,7 @@ export class MangaListComponent implements OnInit {
 	}
 	
 	getCountRows() {
-		return 'auto'.repeat(Math.ceil(this.mangas.length / 2));
+		return 'auto, '.repeat(Math.ceil(this.mangas.length / 2));
 	}
 
 	getRow(index: number) {
