@@ -28,23 +28,23 @@
                 color="white" borderRadius="50%" class="p-5"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
-                <Label text="Release date: "></Label>
+                <Label text="Release date: " textWrap="true"></Label>
                 <Label text="{{ manga.releaseDate }}"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
-                <Label text="Volume: "></Label>
+                <Label text="Volume: " textWrap="true"></Label>
                 <Label text="{{ manga.volume }}"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Genre: "></Label>
-                <Label *ngFor="let genre of genres" text="{{ genre.name }}  "></Label>
+                <Label *ngFor="let genre of genres" text="{{ genre.name }}  " textWrap="true"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
-                <Label text="Author: "></Label>
+                <Label text="Author: " textWrap="true"></Label>
                 <Label text="{{ manga.author }}"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
-                <Label text="Translater: "></Label>
+                <Label text="Translater: " textWrap="true"></Label>
                 <Label text="{{ manga.translater }}"></Label>
             </StackLayout>
         </StackLayout>

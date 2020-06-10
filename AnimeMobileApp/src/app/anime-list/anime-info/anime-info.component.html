@@ -33,28 +33,29 @@
             </StackLayout> -->
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Release date: "></Label>
-                <Label text="{{ anime.releaseDate }}"></Label>
+                <Label text="{{ anime.releaseDate }}" textWrap="true"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Season: "></Label>
-                <Label text="{{ anime.season }}"></Label>
+                <Label text="{{ anime.season }}" textWrap="true"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Genre: "></Label>
-                <Label *ngFor="let genre of genres" text="{{ genre.name }}  "></Label>
+                <Label *ngFor="let genre of genres" text="{{ genre.name }}  " textWrap="true"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Source: "></Label>
-                <Label text="{{ anime.source }}"></Label>
+                <Label text="{{ anime.source }}" textWrap="true"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Studio: "></Label>
-                <Label *ngFor="let studio of studios" text="{{ studio.name }}  " (tap)="openURL(studio.link)" class="primary" color="#8503b2">
+                <Label *ngFor="let studio of studios" text="{{ studio.name }}  " (tap)="openURL(studio.link)" class="primary" color="#8503b2"  
+                    textWrap="true">
                 </Label>
             </StackLayout>
             <StackLayout orientation="horizontal" class="m-y-2 m-x-5">
                 <Label text="Author: "></Label>
-                <Label text="{{ anime.studio }}"></Label>
+                <Label text="{{ anime.studio }}" textWrap="true"></Label>
             </StackLayout>
         </StackLayout>
     </StackLayout>
