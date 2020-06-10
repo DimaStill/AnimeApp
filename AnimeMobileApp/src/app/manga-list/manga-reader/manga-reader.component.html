@@ -3,10 +3,11 @@
 </ActionBar>
 
 <ScrollView>
-<GridLayout rows="9*, auto">
-    <Image [src]="getPage()" row="0"></Image>
+<GridLayout rows="*, auto">
+    <!-- <WebView row="0" [src]="getPage()"></WebView> -->
+    <Image [src]="photo" row="0" height="90%" #photoImage></Image>
     <StackLayout orientation="horizontal" row="1" class="m-x-a">
-        <button text="Previous" *ngIf="currentPage > 0" (tap)="goPrevPage()" class="-primary -rounded-sm" height="90%"></button>
+        <button text="Previous" *ngIf="currentPage > 0" (tap)="goPrevPage()" class="-primary -rounded-sm"></button>
         <Button text="Next" *ngIf="currentPage + 1 < mangaPages?.pages.length" (tap)="goNextPage()" class="-primary -rounded-sm"></Button>
     </StackLayout>
 </GridLayout>
