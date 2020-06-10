@@ -37,7 +37,7 @@ namespace AnimeAPI.Models.DTO
         public string ReleaseDate { get; set; }
         public int Volume { get; set; }
         public bool ReleaseContinues { get; set; }
-        public ICollection<int> TranslaterIds { get; set; }
+        public ICollection<int> TranslaterIds { get; set; } = new List<int>();
         public ICollection<int> GenreIds { get; set; } = new List<int>();
         public string Author { get; set; }
         public string PhotoBase64 { get; set; }

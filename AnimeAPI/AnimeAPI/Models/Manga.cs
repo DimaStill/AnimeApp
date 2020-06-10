@@ -29,7 +29,7 @@ namespace AnimeAPI.Models
         public string ReleaseDate { get; set; }
         public int Volume { get; set; }
         public bool ReleaseContinues { get; set; }
-        public List<Studio> Translater { get; set; }
+        public List<Studio> Translater { get; set; } = new List<Studio>();
         public List<Genre> Genre { get; set; } = new List<Genre>();
         public string Author { get; set; }
         public string PhotoBase64 { get; set; }
